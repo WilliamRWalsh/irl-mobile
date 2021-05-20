@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class QuestList extends StatelessWidget {
+class QuestList extends StatefulWidget {
+  @override
+  _QuestListState createState() => _QuestListState();
+}
+
+class _QuestListState extends State<QuestList> {
   final _quests = [
     {'id': 1, 'name': 'Practice Skill', 'xp': 100, 'rarity': 0},
     {'id': 1, 'name': 'Learn', 'xp': 100, 'rarity': 0},
@@ -9,6 +14,7 @@ class QuestList extends StatelessWidget {
     {'id': 1, 'name': 'Practice', 'xp': 100, 'rarity': 0},
     {'id': 1, 'name': 'Practice', 'xp': 100, 'rarity': 0}
   ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
