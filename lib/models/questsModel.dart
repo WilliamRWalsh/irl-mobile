@@ -1,19 +1,17 @@
 import 'package:json_annotation/json_annotation.dart';
 
+part 'quest.g.dart';
+
 @JsonSerializable()
 class Quest {
+  Quest(this.id, this.name);
+
   final int id;
-  final String title;
 
-  Quest({
-    this.id,
-    this.title,
-  });
+  @JsonKey(name: 'title')
+  final String name;
 
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
-      id: json['id'],
-      title: json['title'],
-    );
-  }
+  factory Quest.fromJson(Map<String, dynamic> json) => _$QuestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$QuestToJson(this);
 }

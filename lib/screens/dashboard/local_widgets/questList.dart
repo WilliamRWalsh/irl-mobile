@@ -8,12 +8,12 @@ class QuestList extends StatefulWidget {
 }
 
 class _QuestListState extends State<QuestList> {
-  Future<Album> futureAlbum;
+  Future<Quest> futureQuests;
 
   @override
   void initState() {
     super.initState();
-    futureAlbum = fetchAlbum();
+    futureQuests = fetchQuests();
   }
 
   @override
@@ -28,11 +28,11 @@ class _QuestListState extends State<QuestList> {
           title: Text('Fetch Data Example'),
         ),
         body: Center(
-          child: FutureBuilder<Album>(
-            future: futureAlbum,
+          child: FutureBuilder<Quest>(
+            future: futureQuests,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text(snapshot.data.title);
+                return Text(snapshot.data.name);
               } else if (snapshot.hasError) {
                 return Text("${snapshot.error}");
               }
