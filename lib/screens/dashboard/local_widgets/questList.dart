@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:irl_mobile/models/questsModel.dart';
+import 'package:irl_mobile/models/questModel.dart';
 import 'package:irl_mobile/services/quests.dart';
 
 class QuestList extends StatefulWidget {
@@ -13,6 +13,7 @@ class _QuestListState extends State<QuestList> {
   @override
   void initState() {
     super.initState();
+    print('quests...');
     futureQuests = fetchQuests();
   }
 
@@ -31,6 +32,7 @@ class _QuestListState extends State<QuestList> {
           child: FutureBuilder<Quest>(
             future: futureQuests,
             builder: (context, snapshot) {
+              print(snapshot);
               if (snapshot.hasData) {
                 return Text(snapshot.data.name);
               } else if (snapshot.hasError) {

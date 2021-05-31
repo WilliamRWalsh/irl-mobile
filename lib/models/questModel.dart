@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'quest.g.dart';
+part 'questModel.g.dart';
 
 @JsonSerializable()
 class Quest {

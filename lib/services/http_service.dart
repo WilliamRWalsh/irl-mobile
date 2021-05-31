@@ -3,33 +3,32 @@ import 'package:dio/dio.dart';
 class HttpService {
   Dio _dio;
 
-  final baseUrl = "https://reqres.in/";
-
   HttpService() {
-    _dio = Dio(BaseOptions(
-      baseUrl: baseUrl,
-    ));
+    _dio = Dio();
 
     initializeInterceptors();
   }
 
   Future<Response> getRequest(String endPoint) async {
+    print('getRequest...');
     Response response;
-
     try {
-      response = await _dio.get(endPoint);
+      response = await Dio()
+          .get('https://my-json-server.typicode.com/typicode/demo/posts');
     } on DioError catch (e) {
+      print('error');
       print(e.message);
       throw Exception(e.message);
     }
-
+    print('EXIT getRequest...');
     return response;
   }
 
   initializeInterceptors() {
     _dio.interceptors.add(InterceptorsWrapper(
-      onError: (e, handler) => print(e),
-      onResponse: (e, handler) => print(e),
-    ));
+        onError: (options, handler) => print(options),
+        onResponse: (options, handler) => print('Response: ${options.data}'),
+        onRequest: (options, handler) =>
+            {print('Request: ${options.path} ${options.data}')}));
   }
 }
