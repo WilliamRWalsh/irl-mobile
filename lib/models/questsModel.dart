@@ -1,19 +1,17 @@
-import 'package:flutter/cupertino.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-class Album {
-  final int userId;
+@JsonSerializable()
+class Quest {
   final int id;
   final String title;
 
-  Album({
-    this.userId,
+  Quest({
     this.id,
     this.title,
   });
 
   factory Album.fromJson(Map<String, dynamic> json) {
     return Album(
-      userId: json['userId'],
       id: json['id'],
       title: json['title'],
     );

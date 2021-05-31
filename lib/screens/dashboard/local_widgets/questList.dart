@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:irl_mobile/models/questsModel.dart';
+import 'package:irl_mobile/services/quests.dart';
 
 class QuestList extends StatefulWidget {
   @override
@@ -6,29 +8,38 @@ class QuestList extends StatefulWidget {
 }
 
 class _QuestListState extends State<QuestList> {
-  final _quests = [
-    {'id': 1, 'name': 'Practice Skill', 'xp': 100, 'rarity': 0},
-    {'id': 1, 'name': 'Learn', 'xp': 100, 'rarity': 0},
-    {'id': 1, 'name': 'Calm Your Mind', 'xp': 100, 'rarity': 0},
-    {'id': 1, 'name': 'Run!', 'xp': 100, 'rarity': 0},
-    {'id': 1, 'name': 'Practice', 'xp': 100, 'rarity': 0},
-    {'id': 1, 'name': 'Practice', 'xp': 100, 'rarity': 0}
-  ];
+  Future<Album> futureAlbum;
+
+  @override
+  void initState() {
+    super.initState();
+    futureAlbum = fetchAlbum();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-      child: ListView.separated(
-        itemCount: _quests.length,
-        separatorBuilder: (context, index) => Container(
-          height: 10,
+    return MaterialApp(
+      title: 'Fetch Data Example',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Fetch Data Example'),
         ),
-        itemBuilder: (context, index) => Center(
-          child: Container(
-            height: 100,
-            color: Colors.blue[100],
-            child: Center(child: Text('${_quests[index]['name']}')),
+        body: Center(
+          child: FutureBuilder<Album>(
+            future: futureAlbum,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(snapshot.data.title);
+              } else if (snapshot.hasError) {
+                return Text("${snapshot.error}");
+              }
+
+              // By default, show a loading spinner.
+              return CircularProgressIndicator();
+            },
           ),
         ),
       ),
