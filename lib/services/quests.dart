@@ -7,7 +7,7 @@ Future<Quests> fetchQuests() async {
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    return Quests.fromJson(response.data);
+    return null;
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
