@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "522687284287",
+    "project_id": "slim-sams-cal-clac",
+    "storage_bucket": "slim-sams-cal-clac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522687284287:android:ff17eb7c112b36ea79e48a",
+        "android_client_info": {
+          "package_name": "com.woodalesoftware.slim_sams_cal_calc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522687284287-pqj5hvs3i7oh8cqtr6du5g6i4chiaumk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.woodalesoftware.slim_sams_cal_calc",
+            "certificate_hash": "e3a492e09d026e1d4748cc92fc5a591b935c176f"
+          }
+        },
+        {
+          "client_id": "522687284287-ualtafucq1uk1q0s14392o3hscjfku7e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAm0xtZLn8vfH0_pEeTNwO8oQHckMazLlI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522687284287-ualtafucq1uk1q0s14392o3hscjfku7e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

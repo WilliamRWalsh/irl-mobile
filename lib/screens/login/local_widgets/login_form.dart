@@ -23,21 +23,8 @@ class _LoginFormState extends State<LoginForm> {
               child: TextFormField(
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  icon: Icon(Icons.email_rounded),
-                  labelText: 'Email',
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(50, 8, 50, 8),
-              child: TextFormField(
-                obscureText: true,
-                enableSuggestions: false,
-                autocorrect: false,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  icon: Icon(Icons.lock),
-                  labelText: 'Password',
+                  icon: Icon(Icons.phone),
+                  labelText: 'Phone Number',
                 ),
               ),
             ),
@@ -54,7 +41,7 @@ class _LoginFormState extends State<LoginForm> {
                           SnackBar(content: Text('Processing Data')));
                     }
                   },
-                  child: Text('Login')),
+                  child: Text('Send Code')),
             )
           ],
         ));
