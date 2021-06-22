@@ -35,10 +35,13 @@ class _LoginFormState extends State<LoginForm> {
                   onPressed: () {
                     // Validate returns true if the form is valid, or false otherwise.
                     if (_formKey.currentState.validate()) {
-                      // If the form is valid, display a snackbar. In the real world,
-                      // you'd often call a server or save the information in a database.
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Processing Data')));
+// await FirebaseAuth.instance.verifyPhoneNumber(
+//   phoneNumber: '+44 7123 123 456',
+//   verificationCompleted: (PhoneAuthCredential credential) {},
+//   verificationFailed: (FirebaseAuthException e) {},
+//   codeSent: (String verificationId, int resendToken) {},
+//   codeAutoRetrievalTimeout: (String verificationId) {},
+// );
                     }
                   },
                   child: Text('Send Code')),
