@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './local_widgets/questList.dart';
 
 class Dashboard extends StatelessWidget {
   @override
@@ -33,7 +32,7 @@ class Dashboard extends StatelessWidget {
               flex: 4,
               child: FractionallySizedBox(
                 widthFactor: 0.90,
-                child: QuestList(),
+                child: Placeholder(),
               ),
             ),
           ],

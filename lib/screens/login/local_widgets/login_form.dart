@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class LoginForm extends StatefulWidget {
   const LoginForm({key}) : super(key: key);
@@ -32,21 +35,35 @@ class _LoginFormState extends State<LoginForm> {
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(minimumSize: Size(175, 50)),
-                  onPressed: () {
-                    // Validate returns true if the form is valid, or false otherwise.
+                  onPressed: () async {
                     if (_formKey.currentState.validate()) {
-// await FirebaseAuth.instance.verifyPhoneNumber(
-//   phoneNumber: '+44 7123 123 456',
-//   verificationCompleted: (PhoneAuthCredential credential) {},
-//   verificationFailed: (FirebaseAuthException e) {},
-//   codeSent: (String verificationId, int resendToken) {},
-//   codeAutoRetrievalTimeout: (String verificationId) {},
-// );
+                      await signIn();
                     }
                   },
                   child: Text('Send Code')),
             )
           ],
         ));
+  }
+
+  Future signIn() async {
+    var verifyPhoneNumber = _auth.verifyPhoneNumber(
+      phoneNumber: '+1 123 456 7890',
+      verificationCompleted: (PhoneAuthCredential credential) {
+        // is this auto?
+        print('verificationCompleted');
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        print('verificationFailed');
+      },
+      codeSent: (String verificationId, int resendToken) {
+        // This is called first
+        print('codeSent');
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        print('codeAutoRetrievalTimeout');
+      },
+    );
+    await verifyPhoneNumber;
   }
 }
