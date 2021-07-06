@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:irl_mobile/screens/login/login_state.dart';
-import 'package:irl_mobile/screens/login/verify_page.dart';
 import 'package:provider/provider.dart';
 
-class LoginForm extends StatelessWidget {
-  LoginForm();
+class VerifyForm extends StatelessWidget {
+  VerifyForm();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -24,7 +22,7 @@ class LoginForm extends StatelessWidget {
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 icon: Icon(Icons.phone),
-                labelText: 'Phone Number',
+                labelText: '6 Digit Code',
               ),
             ),
           ),
@@ -34,7 +32,7 @@ class LoginForm extends StatelessWidget {
               style: ElevatedButton.styleFrom(minimumSize: Size(175, 50)),
               onPressed: () async {
                 if (_formKey.currentState.validate()) {
-                  await loginState.verifyPhoneNumber();
+                  await loginState.verifyCode();
                 }
               },
               child: Text('Send Code'),
@@ -45,5 +43,3 @@ class LoginForm extends StatelessWidget {
     );
   }
 }
-
-// set up verfiy code input on codeSent
