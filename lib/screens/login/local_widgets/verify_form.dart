@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:irl_mobile/screens/login/login_state.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +11,7 @@ class VerifyForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final LoginState loginState = Provider.of(context);
+    final TextEditingController codeController = TextEditingController();
     return Form(
       key: _formKey,
       child: Column(
@@ -19,9 +21,12 @@ class VerifyForm extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(50, 8, 50, 8),
             child: TextFormField(
+              controller: codeController,
+              keyboardType: TextInputType.phone,
+              maxLength: 6,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                icon: Icon(Icons.phone),
+                icon: Icon(Icons.lock),
                 labelText: '6 Digit Code',
               ),
             ),
@@ -32,10 +37,10 @@ class VerifyForm extends StatelessWidget {
               style: ElevatedButton.styleFrom(minimumSize: Size(175, 50)),
               onPressed: () async {
                 if (_formKey.currentState.validate()) {
-                  await loginState.verifyCode();
+                  await loginState.verifyCode(codeController.text);
                 }
               },
-              child: Text('Send Code'),
+              child: Text('Verify Code'),
             ),
           ),
         ],

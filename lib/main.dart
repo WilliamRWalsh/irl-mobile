@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:irl_mobile/screens/dashboard/dashboard.dart';
 import 'package:irl_mobile/screens/login/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:irl_mobile/screens/login/login_state.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,12 +45,16 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     // Show error message if initialization failed
     if (_error) {
-      return Placeholder();
+      return Center(
+        child: Text(
+          _error.toString(),
+        ),
+      );
     }
 
     // Show a loader until FlutterFire is initialized
     if (!_initialized) {
-      return Placeholder();
+      return CircularProgressIndicator();
     }
 
     return SlimSamsApp();
@@ -78,7 +84,19 @@ class SlimSamsApp extends StatelessWidget {
         ),
       ),
       home: Scaffold(
-        body: Login(),
+        body: MultiProvider(
+          providers: [
+            ChangeNotifierProvider(
+              create: (BuildContext context) => LoginState(),
+            ),
+          ],
+          child: Builder(
+            builder: (context) {
+              final LoginState loginState = Provider.of(context);
+              return loginState.isLogged ? Dashboard() : Login();
+            },
+          ),
+        ),
       ),
     );
   }

@@ -9,25 +9,22 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<LoginState>(
-          create: (BuildContext context) => LoginState(),
-        ),
-      ],
-      child: Center(
-        child: Builder(
-          builder: (BuildContext context) {
-            final LoginState loginState = Provider.of(context);
-            return Container(
-              width: 500,
-              height: 300,
-              child: Center(
-                child: loginState.isVerifying ? VerifyForm() : LoginForm(),
-              ),
-            );
-          },
-        ),
+    return Center(
+      child: Builder(
+        builder: (BuildContext context) {
+          final LoginState loginState = Provider.of(context);
+          return Container(
+            width: 500,
+            height: 300,
+            child: loginState.pendingVerification
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Center(
+                    child: loginState.isVerifying ? VerifyForm() : LoginForm(),
+                  ),
+          );
+        },
       ),
     );
   }
