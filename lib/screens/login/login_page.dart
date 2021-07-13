@@ -14,7 +14,7 @@ class Login extends StatelessWidget {
       child: Container(
         width: 500,
         height: 300,
-        child: loginState.pendingPhoneVerification
+        child: loginState.pendingVerification
             ? Center(
                 child: CircularProgressIndicator(),
               )

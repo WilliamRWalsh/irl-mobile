@@ -13,19 +13,16 @@ class LoginState extends ChangeNotifier {
   bool get isVerifying => _isVerify;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  bool _pendingPhoneVerification = false;
-  bool get pendingPhoneVerification => _pendingPhoneVerification;
-
-  bool _pendingCodeVerification = false;
-  bool get pendingCodeVerification => _pendingCodeVerification;
+  bool _pendingVerification = false;
+  bool get pendingVerification => _pendingVerification;
 
   String _verificationId;
   String get verificationId => _verificationId;
   set verificationId(String verificationId) => _verificationId;
 
   Future verifyCode(String smsCode) async {
-    print('LoginState: _pendingCodeVerification = true');
-    _pendingCodeVerification = true;
+    print('LoginState: _pendingVerification = true');
+    _pendingVerification = true;
     notifyListeners();
 
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
@@ -36,20 +33,19 @@ class LoginState extends ChangeNotifier {
     try {
       await _auth.signInWithCredential(credential);
     } catch (error) {
-      _pendingCodeVerification = false;
+      _pendingVerification = false;
       notifyListeners();
       log('LoginState: verifyCode - $error', level: 2);
       return;
     }
     _isLogged = true;
-    _pendingCodeVerification = false;
     notifyListeners();
-    print('LoginState: _pendingCodeVerification = false');
+    print('LoginState: _pendingVerification = false');
   }
 
   Future verifyPhoneNumber(String number) async {
     print('LoginState: _pendingVerification = true');
-    _pendingPhoneVerification = true;
+    _pendingVerification = true;
     notifyListeners();
 
     await _auth.verifyPhoneNumber(
@@ -65,7 +61,7 @@ class LoginState extends ChangeNotifier {
         // save in outside state -- or maybe pass throw navigator
         _verificationId = verificationId;
         _isVerify = true;
-        _pendingPhoneVerification = false;
+        _pendingVerification = false;
         notifyListeners();
 
         print('LoginState: codeSent: ' + verificationId);

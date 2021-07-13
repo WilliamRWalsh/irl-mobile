@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:irl_mobile/screens/login/login_state.dart';
 import 'package:provider/provider.dart';
 
@@ -12,30 +11,40 @@ class VerifyForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final LoginState loginState = Provider.of(context);
     final TextEditingController codeController = TextEditingController();
+
     return Form(
       key: _formKey,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 8),
+            padding:
+                const EdgeInsets.only(left: 100, right: 100, top: 8, bottom: 8),
             child: TextFormField(
               controller: codeController,
-              keyboardType: TextInputType.phone,
               maxLength: 6,
+              keyboardType: TextInputType.phone,
+              style: Theme.of(context).textTheme.bodyText2,
               decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                icon: Icon(Icons.lock),
-                labelText: '6 Digit Code',
+                prefixIcon: Icon(Icons.lock),
+                fillColor: Colors.black,
+                counterText: "",
               ),
+              autofocus: true,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 20),
             child: ElevatedButton(
-              style: ElevatedButton.styleFrom(minimumSize: Size(175, 50)),
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(175, 50),
+                primary: Theme.of(context).buttonColor,
+                onPrimary: Theme.of(context).primaryColorDark,
+                textStyle: Theme.of(context).textTheme.button,
+              ),
               onPressed: () async {
+                _formKey.currentState.save();
                 if (!_formKey.currentState.validate()) {
                   return;
                 }
@@ -49,3 +58,5 @@ class VerifyForm extends StatelessWidget {
     );
   }
 }
+
+// set up verfiy code input on codeSent
