@@ -91,11 +91,13 @@ class SlimSamsApp extends StatelessWidget {
               create: (BuildContext context) => LoginState(),
             ),
           ],
-          child: Builder(
-            builder: (context) {
-              final LoginState loginState = Provider.of(context);
-              return loginState.isLogged ? Dashboard() : Login();
-            },
+          child: SafeArea(
+            child: Builder(
+              builder: (context) {
+                final LoginState loginState = Provider.of(context);
+                return loginState.isLogged ? Dashboard() : Login();
+              },
+            ),
           ),
         ),
       ),
