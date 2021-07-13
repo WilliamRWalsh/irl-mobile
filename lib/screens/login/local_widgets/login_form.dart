@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:irl_mobile/screens/login/login_state.dart';
 import 'package:provider/provider.dart';
 
@@ -16,29 +15,34 @@ class LoginForm extends StatelessWidget {
     return Form(
       key: _formKey,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(50, 8, 50, 8),
+            padding:
+                const EdgeInsets.only(left: 100, right: 100, top: 8, bottom: 8),
             child: TextFormField(
               controller: phoneController,
               keyboardType: TextInputType.phone,
+              style: Theme.of(context).textTheme.bodyText2,
               decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                icon: Icon(Icons.phone),
-                labelText: 'Phone Number',
+                prefixIcon: Icon(Icons.phone),
+                fillColor: Colors.black,
               ),
+              autofocus: true,
               onSaved: (val) {
                 phoneController.text = '+1$val';
               },
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 20),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(175, 50),
+                primary: Theme.of(context).buttonColor,
+                onPrimary: Theme.of(context).primaryColorDark,
+                textStyle: Theme.of(context).textTheme.button,
               ),
               onPressed: () async {
                 _formKey.currentState.save();

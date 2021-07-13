@@ -66,24 +66,25 @@ class SlimSamsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        // Define the default brightness and colors.
-        brightness: Brightness.dark,
-        primaryColor: Colors.orange[400],
+        // Colors
+        brightness: Brightness.light,
+        primaryColor: Colors.blue[00],
+        errorColor: Colors.red,
         accentColor: Colors.green[200],
-        buttonColor: Colors.orange[100],
+        buttonColor: Colors.yellow[600],
+        primaryColorDark: Colors.black,
 
-        // Define the default font family.
-        fontFamily: 'Georgia',
+        // Widget Themes
+        inputDecorationTheme:
+            InputDecorationTheme(fillColor: Theme.of(context).primaryColorDark),
 
-        // Define the default TextTheme. Use this to specify the default
-        // text styling for headlines, titles, bodies of text, and more.
+        // Text
         textTheme: TextTheme(
-          headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-          bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
-        ),
+            button: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+            bodyText2: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
       ),
       home: Scaffold(
+        backgroundColor: Colors.blue[50],
         body: MultiProvider(
           providers: [
             ChangeNotifierProvider(

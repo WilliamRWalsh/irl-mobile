@@ -13,66 +13,69 @@ class LoginState extends ChangeNotifier {
   bool get isVerifying => _isVerify;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  bool _pendingVerification = false;
-  bool get pendingVerification => _pendingVerification;
+  bool _pendingPhoneVerification = false;
+  bool get pendingPhoneVerification => _pendingPhoneVerification;
+
+  bool _pendingCodeVerification = false;
+  bool get pendingCodeVerification => _pendingCodeVerification;
 
   String _verificationId;
   String get verificationId => _verificationId;
   set verificationId(String verificationId) => _verificationId;
 
   Future verifyCode(String smsCode) async {
+    print('LoginState: _pendingCodeVerification = true');
+    _pendingCodeVerification = true;
+    notifyListeners();
+
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
       verificationId: verificationId,
       smsCode: smsCode,
     );
 
-    _pendingVerification = true;
-    notifyListeners();
-
     try {
-      final response = await _auth.signInWithCredential(credential);
+      await _auth.signInWithCredential(credential);
     } catch (error) {
-      _pendingVerification = false;
+      _pendingCodeVerification = false;
       notifyListeners();
-      log('sscc: verifyCode - $error', level: 2);
+      log('LoginState: verifyCode - $error', level: 2);
       return;
     }
     _isLogged = true;
-    _pendingVerification = false;
+    _pendingCodeVerification = false;
     notifyListeners();
+    print('LoginState: _pendingCodeVerification = false');
   }
 
   Future verifyPhoneNumber(String number) async {
-    var verifyPhoneNumber = _auth.verifyPhoneNumber(
+    print('LoginState: _pendingVerification = true');
+    _pendingPhoneVerification = true;
+    notifyListeners();
+
+    await _auth.verifyPhoneNumber(
       phoneNumber: number,
       verificationCompleted: (PhoneAuthCredential credential) {
         // is this auto?
-        print('sscc: verificationCompleted');
+        print('LoginState: verificationCompleted');
       },
       verificationFailed: (FirebaseAuthException e) {
-        log('sscc: verificationFailed - $e', level: 2);
+        log('LoginState: verificationFailed - $e', level: 2);
       },
       codeSent: (String verificationId, int resendToken) {
         // save in outside state -- or maybe pass throw navigator
         _verificationId = verificationId;
         _isVerify = true;
+        _pendingPhoneVerification = false;
         notifyListeners();
 
-        print('sscc: codeSent: ' + verificationId);
+        print('LoginState: codeSent: ' + verificationId);
+        print('LoginState: _pendingVerification = false');
       },
       codeAutoRetrievalTimeout: (String verificationId) {
-        log('sscc: codeAutoRetrievalTimeout', level: 1);
+        log('LoginState: codeAutoRetrievalTimeout', level: 1);
         _verificationId = verificationId;
       },
       timeout: Duration(seconds: 60),
     );
-
-    _pendingVerification = true;
-    notifyListeners();
-
-    await verifyPhoneNumber;
-
-    _pendingVerification = false;
-    notifyListeners();
   }
 }

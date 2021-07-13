@@ -5,26 +5,22 @@ import 'package:irl_mobile/screens/login/login_state.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatelessWidget {
-  const Login({key}) : super(key: key);
+  const Login();
 
   @override
   Widget build(BuildContext context) {
+    final LoginState loginState = Provider.of(context);
     return Center(
-      child: Builder(
-        builder: (BuildContext context) {
-          final LoginState loginState = Provider.of(context);
-          return Container(
-            width: 500,
-            height: 300,
-            child: loginState.pendingVerification
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : Center(
-                    child: loginState.isVerifying ? VerifyForm() : LoginForm(),
-                  ),
-          );
-        },
+      child: Container(
+        width: 500,
+        height: 300,
+        child: loginState.pendingPhoneVerification
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Center(
+                child: loginState.isVerifying ? VerifyForm() : LoginForm(),
+              ),
       ),
     );
   }

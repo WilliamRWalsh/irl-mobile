@@ -19,7 +19,7 @@ class VerifyForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(50, 8, 50, 8),
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 8),
             child: TextFormField(
               controller: codeController,
               keyboardType: TextInputType.phone,
@@ -36,9 +36,10 @@ class VerifyForm extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(minimumSize: Size(175, 50)),
               onPressed: () async {
-                if (_formKey.currentState.validate()) {
-                  await loginState.verifyCode(codeController.text);
+                if (!_formKey.currentState.validate()) {
+                  return;
                 }
+                await loginState.verifyCode(codeController.text);
               },
               child: Text('Verify Code'),
             ),
