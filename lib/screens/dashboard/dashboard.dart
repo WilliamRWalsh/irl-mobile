@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:irl_mobile/models/cal_record_modal.dart';
+import 'package:irl_mobile/screens/dashboard/local_widgets/ledger_card.dart';
 
 class Dashboard extends StatelessWidget {
+  final List<CalRecord> ledger = [
+    CalRecord(calories: 210),
+    CalRecord(calories: 360),
+    CalRecord(calories: 100),
+    CalRecord(calories: 50),
+    CalRecord(calories: 85),
+    CalRecord(calories: 310),
+    CalRecord(calories: 20),
+    CalRecord(calories: 10),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,7 +37,7 @@ class Dashboard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 12.0),
                   child: Text(
-                    "0",
+                    "1425",
                     style: Theme.of(context).textTheme.headline1,
                   ),
                 ),
@@ -44,21 +57,19 @@ class Dashboard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 12.0),
                   child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 40,
-                          child: Text('+50'),
-                        ),
-                        SizedBox(
-                          height: 40,
-                          child: Text('+245'),
-                        ),
-                        SizedBox(
-                          height: 40,
-                          child: Text('+105'),
-                        ),
-                      ],
+                    child: Expanded(
+                      child: Column(
+                        children: [
+                          for (var record in ledger) ...[
+                            LedgerCard(
+                              record: record,
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                          ]
+                        ],
+                      ),
                     ),
                   ),
                 ),
