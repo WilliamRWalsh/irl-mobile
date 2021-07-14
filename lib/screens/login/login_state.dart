@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class LoginState extends ChangeNotifier {
   LoginState();
 
-  bool _isLogged = false;
+  bool _isLogged = true;
   bool get isLogged => _isLogged;
 
   bool _isVerify = false;
