@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:irl_mobile/models/cal_record_modal.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/ledger_card.dart';
+import 'package:irl_mobile/screens/login/login_state.dart';
+import 'package:provider/provider.dart';
 
 class Dashboard extends StatelessWidget {
   final List<CalRecord> ledger = [
@@ -18,6 +21,7 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final LoginState loginState = Provider.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: Container(
@@ -92,7 +96,8 @@ class Dashboard extends StatelessWidget {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 40),
+                                    horizontal: 40,
+                                  ),
                                   child: TextFormField(
                                     controller: TextEditingController(),
                                     keyboardType: TextInputType.phone,
@@ -121,6 +126,16 @@ class Dashboard extends StatelessWidget {
                                       if (!_formKey.currentState.validate()) {
                                         return;
                                       }
+                                      FirebaseFirestore.instance
+                                          .collection('calories')
+                                          .doc()
+                                          .set(
+                                        {
+                                          'user': loginState.user.uid,
+                                          'calories': 101,
+                                          'createdAt': DateTime.now(),
+                                        },
+                                      );
                                     },
                                     child: Text('OK'),
                                   ),
