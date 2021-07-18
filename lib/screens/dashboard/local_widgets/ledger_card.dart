@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:irl_mobile/models/calories_modal.dart';
 
 class LedgerCard extends StatelessWidget {
-  final Calories calories;
-
   LedgerCard({this.calories});
+  final Calories calories;
 
   @override
   Widget build(BuildContext context) {

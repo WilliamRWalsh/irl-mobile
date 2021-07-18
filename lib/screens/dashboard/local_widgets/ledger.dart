@@ -6,8 +6,10 @@ import 'package:irl_mobile/screens/dashboard/local_widgets/ledger_card.dart';
 class Ledger extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _caloriesStream =
-        FirebaseFirestore.instance.collection('calories').snapshots();
+    final Stream<QuerySnapshot> _caloriesStream = FirebaseFirestore.instance
+        .collection('calories')
+        .orderBy('createdAt', descending: false)
+        .snapshots();
     return Padding(
       padding: EdgeInsets.only(bottom: 12.0),
       child: StreamBuilder<QuerySnapshot>(
