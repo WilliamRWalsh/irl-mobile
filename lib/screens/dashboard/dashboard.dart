@@ -14,6 +14,8 @@ class Dashboard extends StatelessWidget {
     CalRecord(calories: 10),
   ];
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -76,7 +78,60 @@ class Dashboard extends StatelessWidget {
                     onPrimary: Theme.of(context).primaryColorDark,
                     textStyle: Theme.of(context).textTheme.button,
                   ),
-                  onPressed: () async {},
+                  onPressed: () => showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          contentPadding:
+                              EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          content: Form(
+                            key: _formKey,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 40),
+                                  child: TextFormField(
+                                    controller: TextEditingController(),
+                                    keyboardType: TextInputType.phone,
+                                    style:
+                                        Theme.of(context).textTheme.bodyText2,
+                                    decoration: const InputDecoration(
+                                      fillColor: Colors.black,
+                                    ),
+                                    autofocus: true,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20),
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: Size(150, 50),
+                                      primary: Theme.of(context).buttonColor,
+                                      onPrimary:
+                                          Theme.of(context).primaryColorDark,
+                                      textStyle:
+                                          Theme.of(context).textTheme.button,
+                                    ),
+                                    onPressed: () async {
+                                      _formKey.currentState.save();
+                                      if (!_formKey.currentState.validate()) {
+                                        return;
+                                      }
+                                    },
+                                    child: Text('OK'),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
                   child: Text('Add Calories'),
                 ),
               ),
