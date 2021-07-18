@@ -52,19 +52,17 @@ class Dashboard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 12.0),
                   child: SingleChildScrollView(
-                    child: Expanded(
-                      child: Column(
-                        children: [
-                          for (var record in ledger) ...[
-                            LedgerCard(
-                              record: record,
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                          ]
-                        ],
-                      ),
+                    child: Column(
+                      children: [
+                        for (var record in ledger) ...[
+                          LedgerCard(
+                            record: record,
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                        ]
+                      ],
                     ),
                   ),
                 ),

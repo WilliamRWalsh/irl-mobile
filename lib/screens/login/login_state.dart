@@ -4,9 +4,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginState extends ChangeNotifier {
-  LoginState();
+  LoginState() {
+    FirebaseAuth.instance.userChanges().listen((User user) {
+      if (user == null) {
+        print('User is currently signed out!');
+      } else {
+        _isLogged = true;
+        _user = user;
+        print('User is signed in!');
+      }
+    });
+  }
 
-  bool _isLogged = true;
+  User _user;
+  User get user => _user;
+
+  bool _isLogged = false;
   bool get isLogged => _isLogged;
 
   bool _isVerify = false;
