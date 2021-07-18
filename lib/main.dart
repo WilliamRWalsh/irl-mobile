@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:irl_mobile/firebase/calories_list_state.dart';
 import 'package:irl_mobile/screens/dashboard/dashboard.dart';
 import 'package:irl_mobile/screens/login/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -112,6 +113,9 @@ class SlimSamsApp extends StatelessWidget {
           providers: [
             ChangeNotifierProvider(
               create: (BuildContext context) => LoginState(),
+            ),
+            ChangeNotifierProvider(
+              create: (BuildContext context) => CaloriesListState(),
             ),
           ],
           child: SafeArea(

@@ -1,17 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:irl_mobile/models/calories_modal.dart';
 
 class CaloriesListState extends ChangeNotifier {
-  CaloriesListState({this.userID});
+  CaloriesListState({this.userID}) {
+    _caloriesStream ??= FirebaseFirestore.instance
+        .collection('calories')
+        .orderBy('createdAt', descending: false)
+        .snapshots();
+  }
 
   String userID;
 
-  List<Calories> _caloriesList = [];
-  bool _pendingGetCaloriesList;
-
-  bool get pendingGetCaloriesList => _pendingGetCaloriesList;
-
-  List<Calories> getCaloriesList() {
-    return [];
-  }
+  Stream<QuerySnapshot> _caloriesStream;
+  Stream<QuerySnapshot> get caloriesStream => _caloriesStream;
 }

@@ -1,19 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:irl_mobile/firebase/calories_list_state.dart';
 import 'package:irl_mobile/models/calories_modal.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/ledger_card.dart';
+import 'package:provider/provider.dart';
 
 class Ledger extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _caloriesStream = FirebaseFirestore.instance
-        .collection('calories')
-        .orderBy('createdAt', descending: false)
-        .snapshots();
+    final CaloriesListState caloriesListState = Provider.of(context);
     return Padding(
       padding: EdgeInsets.only(bottom: 12.0),
       child: StreamBuilder<QuerySnapshot>(
-          stream: _caloriesStream,
+          stream: caloriesListState.caloriesStream,
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
