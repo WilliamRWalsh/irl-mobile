@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:irl_mobile/models/cal_record_modal.dart';
+import 'package:irl_mobile/models/calories_modal.dart';
 
 class LedgerCard extends StatelessWidget {
-  final CalRecord record;
+  final Calories calories;
 
-  LedgerCard({this.record});
+  LedgerCard({this.calories});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class LedgerCard extends StatelessWidget {
       child: SizedBox(
         height: 50,
         width: 300,
-        child: Center(child: Text('+' + record.calories.toString())),
+        child: Center(child: Text('+' + calories.calories.toString())),
       ),
     );
   }
