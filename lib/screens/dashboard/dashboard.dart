@@ -35,6 +35,7 @@ class Dashboard extends StatelessWidget {
                 ),
               ),
               Flexible(
+                fit: FlexFit.tight,
                 flex: 8,
                 child: Ledger(),
               ),

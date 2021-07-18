@@ -24,24 +24,27 @@ class Ledger extends StatelessWidget {
               return Text("Loading...");
             }
 
-            return SingleChildScrollView(
-              child: Column(
-                children: snapshot.data.docs.map((DocumentSnapshot document) {
-                  Map<String, dynamic> data = document.data();
+            return Ink(
+              color: Colors.amber[100],
+              child: SingleChildScrollView(
+                child: Column(
+                  children: snapshot.data.docs.map((DocumentSnapshot document) {
+                    Map<String, dynamic> data = document.data();
 
-                  return Column(
-                    children: [
-                      LedgerCard(
-                        calories: Calories(
-                          calories: data['calories'],
+                    return Column(
+                      children: [
+                        LedgerCard(
+                          calories: Calories(
+                            calories: data['calories'],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      )
-                    ],
-                  );
-                }).toList(),
+                        SizedBox(
+                          height: 8,
+                        )
+                      ],
+                    );
+                  }).toList(),
+                ),
               ),
             );
           }),
