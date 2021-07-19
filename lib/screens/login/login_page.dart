@@ -10,18 +10,36 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final LoginState loginState = Provider.of(context);
-    return Center(
-      child: Container(
-        width: 500,
-        height: 300,
-        child: loginState.pendingVerification
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Center(
-                child: loginState.isVerifying ? VerifyForm() : LoginForm(),
-              ),
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (!loginState.isVerifying) ...[
+          CircleAvatar(
+            radius: 91,
+            backgroundColor: Colors.black,
+            child: CircleAvatar(
+              foregroundImage: AssetImage('assets/sam-face.jpg'),
+              radius: 85,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 5.0, bottom: 15),
+            child: Text(
+              'Slim Sam\'s Cal Calc',
+              style: Theme.of(context).textTheme.headline2,
+            ),
+          )
+        ],
+        Container(
+          child: loginState.pendingVerification
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Center(
+                  child: loginState.isVerifying ? VerifyForm() : LoginForm(),
+                ),
+        ),
+      ],
     );
   }
 }

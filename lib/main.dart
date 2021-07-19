@@ -107,7 +107,6 @@ class SlimSamsApp extends StatelessWidget {
         ),
       ),
       home: Scaffold(
-        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.blue[50],
         body: MultiProvider(
           providers: [
