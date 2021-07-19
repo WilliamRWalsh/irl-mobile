@@ -52,7 +52,7 @@ class LoginForm extends StatelessWidget {
 
                 await loginState.verifyPhoneNumber(phoneController.text);
               },
-              child: Text('Send Code'),
+              child: Text('Verify Phone Number'),
             ),
           ),
         ],

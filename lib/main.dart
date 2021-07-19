@@ -104,6 +104,11 @@ class SlimSamsApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: Colors.blueGrey[700],
           ),
+          headline4: TextStyle(
+            fontSize: 42,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue[300],
+          ),
         ),
       ),
       home: Scaffold(

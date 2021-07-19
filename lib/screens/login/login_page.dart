@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:irl_mobile/screens/login/local_widgets/login_form.dart';
 import 'package:irl_mobile/screens/login/local_widgets/verify_form.dart';
 import 'package:irl_mobile/screens/login/login_state.dart';
@@ -13,23 +14,24 @@ class Login extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        if (!loginState.isVerifying) ...[
-          CircleAvatar(
-            radius: 91,
-            backgroundColor: Colors.black,
-            child: CircleAvatar(
-              foregroundImage: AssetImage('assets/sam-face.jpg'),
-              radius: 85,
+        CircleAvatar(
+          radius: 91,
+          backgroundColor: Colors.blue[400],
+          child: CircleAvatar(
+            foregroundImage: AssetImage('assets/sam-face.jpg'),
+            radius: 85,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 5.0, bottom: 15),
+          child: Text(
+            'Slim Sam\'s Cal Calc',
+            style: GoogleFonts.lobster(
+              fontSize: 42,
+              color: Colors.blue[400],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5.0, bottom: 15),
-            child: Text(
-              'Slim Sam\'s Cal Calc',
-              style: Theme.of(context).textTheme.headline2,
-            ),
-          )
-        ],
+        ),
         Container(
           child: loginState.pendingVerification
               ? Center(

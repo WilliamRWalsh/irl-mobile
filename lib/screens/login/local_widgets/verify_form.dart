@@ -18,16 +18,16 @@ class VerifyForm extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 100, right: 100, top: 8, bottom: 8),
+          Container(
+            width: 106,
             child: TextFormField(
               controller: codeController,
               maxLength: 6,
               keyboardType: TextInputType.phone,
               style: Theme.of(context).textTheme.bodyText2,
+              textAlign: TextAlign.center,
               decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.lock),
+                hintText: '6 digit code',
                 fillColor: Colors.black,
                 counterText: "",
               ),
