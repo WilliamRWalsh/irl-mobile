@@ -14,7 +14,7 @@ class LedgerCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.6),
+            color: Colors.yellow.withOpacity(0.7),
             spreadRadius: 1,
             offset: Offset(0, 4),
           ),
@@ -23,7 +23,11 @@ class LedgerCard extends StatelessWidget {
       child: SizedBox(
         height: 50,
         width: 300,
-        child: Center(child: Text('+' + calories.calories.toString())),
+        child: Center(
+          child: Text(
+            '+' + calories.calories.toString(),
+          ),
+        ),
       ),
     );
   }

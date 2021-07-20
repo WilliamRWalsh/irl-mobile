@@ -32,11 +32,21 @@ class Ledger extends StatelessWidget {
                   child: Ink(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(26),
-                      color: Colors.black,
+                      color: Colors.blue[200],
                     ),
                     child: SizedBox(
                       width: 332,
-                      height: 100,
+                      height: 50,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Align(
+                          child: Text(
+                            'Total: 758',
+                            style: TextStyle(color: Colors.black, fontSize: 36),
+                          ),
+                          alignment: Alignment.bottomCenter,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -46,7 +56,7 @@ class Ledger extends StatelessWidget {
                   child: Ink(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(26),
-                      color: Colors.amber[300],
+                      color: Colors.black,
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
