@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/add_calories_dialog.dart';
+import 'package:irl_mobile/screens/dashboard/local_widgets/edit_goal_dialog.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/ledger.dart';
 
 class Dashboard extends StatelessWidget {
@@ -23,12 +24,19 @@ class Dashboard extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.yellow,
-                        radius: 15,
-                        child: Icon(
-                          Icons.edit_rounded,
-                          color: Colors.black,
+                      child: GestureDetector(
+                        onTap: () => showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return EditGoalDialog();
+                            }),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.yellow,
+                          radius: 15,
+                          child: Icon(
+                            Icons.edit_rounded,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     )
