@@ -15,9 +15,31 @@ class Dashboard extends StatelessWidget {
             children: [
               Flexible(
                 flex: 1,
+                child: Row(
+                  children: [
+                    Text(
+                      'Calorie Goal: 1500'.toUpperCase(),
+                      style: Theme.of(context).textTheme.headline3,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        backgroundColor: Colors.yellow,
+                        radius: 15,
+                        child: Icon(
+                          Icons.edit_rounded,
+                          color: Colors.black,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Flexible(
+                flex: 1,
                 child: Text(
-                  'Cal\'s Remaining'.toUpperCase(),
-                  style: Theme.of(context).textTheme.headline3,
+                  'Remaining Calories',
+                  style: Theme.of(context).textTheme.headline2,
                 ),
               ),
               Flexible(
@@ -25,13 +47,6 @@ class Dashboard extends StatelessWidget {
                 child: Text(
                   "1425",
                   style: Theme.of(context).textTheme.headline1,
-                ),
-              ),
-              Flexible(
-                flex: 1,
-                child: Text(
-                  'Ledger',
-                  style: Theme.of(context).textTheme.headline2,
                 ),
               ),
               Flexible(

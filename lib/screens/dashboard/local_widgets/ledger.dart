@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:irl_mobile/firebase/calories_list_state.dart';
 import 'package:irl_mobile/models/calories_modal.dart';
@@ -23,49 +24,59 @@ class Ledger extends StatelessWidget {
               return Text("Loading...");
             }
 
-            return Ink(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(26),
-                color: Colors.amber[300],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children:
-                        snapshot.data.docs.map((DocumentSnapshot document) {
-                      Map<String, dynamic> data = document.data();
-
-                      return Column(
-                        children: [
-                          LedgerCard(
-                            calories: Calories(
-                              calories: data['calories'],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          )
-                        ],
-                      );
-                    }).toList(),
+            return Stack(
+              fit: StackFit.passthrough,
+              alignment: Alignment.bottomCenter,
+              children: [
+                Positioned(
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(26),
+                      color: Colors.black,
+                    ),
+                    child: SizedBox(
+                      width: 332,
+                      height: 100,
+                    ),
                   ),
                 ),
-              ),
+                Positioned(
+                  top: 0,
+                  bottom: 45,
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(26),
+                      color: Colors.amber[300],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: snapshot.data.docs
+                              .map((DocumentSnapshot document) {
+                            Map<String, dynamic> data = document.data();
+
+                            return Column(
+                              children: [
+                                LedgerCard(
+                                  calories: Calories(
+                                    calories: data['calories'],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                )
+                              ],
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             );
           }),
     );
   }
 }
-
-
-// [
-//                   for (var calories in caloriesList) ...[
-//                     LedgerCard(
-//                       calories: calories,
-//                     ),
-//                     SizedBox(
-//                       height: 8,
-//                     ),
-//                   ]
-//                 ]
