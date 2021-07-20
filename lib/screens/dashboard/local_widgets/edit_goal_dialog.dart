@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:irl_mobile/firebase/goal_state.dart';
 import 'package:irl_mobile/screens/login/login_state.dart';
 import 'package:provider/provider.dart';
 
@@ -8,11 +9,19 @@ class EditGoalDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     final TextEditingController goalController = TextEditingController();
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => LoginState(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (BuildContext context) => LoginState(),
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => GoalState(),
+        ),
+      ],
       child: Builder(
         builder: (BuildContext context) {
           final LoginState loginState = Provider.of(context, listen: false);
+          final GoalState goalState = Provider.of(context);
 
           return AlertDialog(
             contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
@@ -53,14 +62,14 @@ class EditGoalDialog extends StatelessWidget {
                         if (!_formKey.currentState.validate()) {
                           return;
                         }
+
                         FirebaseFirestore.instance
                             .collection('goals')
-                            .doc()
+                            .doc(goalState.goal?.id ?? null)
                             .set(
                           {
-                            'user': loginState.user.uid,
-                            'calories': int.parse(goalController.text),
-                            'createdAt': DateTime.now(),
+                            'userID': loginState.user.uid,
+                            'calorieGoal': int.parse(goalController.text),
                           },
                         );
                         Navigator.pop(context);

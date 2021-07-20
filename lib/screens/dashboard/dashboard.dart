@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:irl_mobile/firebase/goal_state.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/add_calories_dialog.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/edit_goal_dialog.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/ledger.dart';
+import 'package:provider/provider.dart';
 
 class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final GoalState goalState = Provider.of(context);
+    final int goal = goalState.goal?.calorieGoal ?? 0;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: Container(
@@ -17,9 +21,10 @@ class Dashboard extends StatelessWidget {
               Flexible(
                 flex: 1,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Calorie Goal: 1500'.toUpperCase(),
+                      'Calorie Goal: $goal',
                       style: Theme.of(context).textTheme.headline3,
                     ),
                     Padding(
