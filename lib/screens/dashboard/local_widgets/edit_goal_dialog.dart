@@ -66,7 +66,7 @@ class EditGoalDialog extends StatelessWidget {
                         FirebaseFirestore.instance
                             .collection('goals')
                             .doc(goalState.goal?.id ?? null)
-                            .set(
+                            .update(
                           {
                             'userID': loginState.user.uid,
                             'calorieGoal': int.parse(goalController.text),

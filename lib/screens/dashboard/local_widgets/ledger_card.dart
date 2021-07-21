@@ -3,7 +3,7 @@ import 'package:irl_mobile/models/calories_modal.dart';
 
 class LedgerCard extends StatelessWidget {
   LedgerCard({this.calories});
-  final Calories calories;
+  final CaloriesModel calories;
 
   @override
   Widget build(BuildContext context) {

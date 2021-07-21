@@ -24,6 +24,7 @@ class Ledger extends StatelessWidget {
               return Text("Loading...");
             }
 
+            final totalCalories = caloriesListState.calorieTotal ?? 0;
             return Stack(
               fit: StackFit.passthrough,
               alignment: Alignment.bottomCenter,
@@ -41,7 +42,7 @@ class Ledger extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: Align(
                           child: Text(
-                            'Total: 758',
+                            'Total: $totalCalories',
                             style: TextStyle(color: Colors.black, fontSize: 36),
                           ),
                           alignment: Alignment.bottomCenter,
@@ -61,26 +62,23 @@ class Ledger extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: SingleChildScrollView(
-                        child: Column(
-                          children: snapshot.data.docs
-                              .map((DocumentSnapshot document) {
-                            Map<String, dynamic> data = document.data();
-
-                            return Column(
-                              children: [
-                                LedgerCard(
-                                  calories: Calories(
-                                    calories: data['calories'],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 8,
+                          child: caloriesListState.caloriesList != null
+                              ? Column(
+                                  children: caloriesListState.caloriesList
+                                      .map((CaloriesModel calories) {
+                                    return Column(
+                                      children: [
+                                        LedgerCard(
+                                          calories: calories,
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        )
+                                      ],
+                                    );
+                                  }).toList(),
                                 )
-                              ],
-                            );
-                          }).toList(),
-                        ),
-                      ),
+                              : null),
                     ),
                   ),
                 ),

@@ -58,9 +58,9 @@ class AddCaloriesDialog extends StatelessWidget {
                             .doc()
                             .set(
                           {
-                            'user': loginState.user.uid,
+                            'userID': loginState.user.uid,
                             'calories': int.parse(caloriesController.text),
-                            'createdAt': DateTime.now(),
+                            'createdAt': DateTime.now().toString(),
                           },
                         );
                         Navigator.pop(context);

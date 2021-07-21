@@ -5,13 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:irl_mobile/models/goal_modal.dart';
 
 class GoalState extends ChangeNotifier {
-  StreamSubscription<QuerySnapshot> _subscription;
-
   GoalState() {
     _goalStream ??= FirebaseFirestore.instance
         .collection('goals')
         .where("userID", isEqualTo: "TwSqyUZyg5Zy8k6IwAtNpMY8e1E3")
         .snapshots();
+
     _subscription = _goalStream.listen((snapshot) {
       Map<String, dynamic> data = snapshot.docs.last.data();
       data['id'] = snapshot.docs.first.id;
@@ -20,6 +19,7 @@ class GoalState extends ChangeNotifier {
     });
   }
 
+  StreamSubscription<QuerySnapshot> _subscription;
   Stream<QuerySnapshot> _goalStream;
 
   GoalModel _goal;
