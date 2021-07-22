@@ -16,12 +16,13 @@ class CaloriesListState extends ChangeNotifier {
       _caloriesList = snapshot.docs.map(
         (doc) {
           Map<String, dynamic> data = doc.data();
-          data['id'] = doc.id;
-          return CaloriesModel.fromJson(data);
+          return CaloriesModel.fromJson(data, doc.id);
         },
       ).toList();
       _calorieTotal = _caloriesList.fold(
-          0, (previousValue, element) => previousValue + element.calories);
+        0,
+        (previousValue, element) => previousValue + element.calories,
+      );
 
       notifyListeners();
     });

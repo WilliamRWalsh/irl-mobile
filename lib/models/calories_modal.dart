@@ -9,12 +9,16 @@ class CaloriesModel {
 
   String id;
   int calories;
-  String
-      createdAt; //TODO: Fix createdAt DateTime.fromMicrosecondsSinceEpoch(timestamp)
+  DateTime createdAt;
   String userID;
 
-  factory CaloriesModel.fromJson(Map<String, dynamic> json) =>
-      _$CaloriesModelFromJson(json);
+  factory CaloriesModel.fromJson(Map<String, dynamic> json, String id) {
+    json['id'] = id;
+    json['createdAt'] = DateTime.fromMillisecondsSinceEpoch(
+      json['createdAt'].millisecondsSinceEpoch,
+    );
+    return _$CaloriesModelFromJson(json);
+  }
 
   Map<String, dynamic> toJson() => _$CaloriesModelToJson(this);
 }
