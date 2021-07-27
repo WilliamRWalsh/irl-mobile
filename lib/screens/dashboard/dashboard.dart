@@ -10,10 +10,12 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GoalState goalState = Provider.of(context);
-    final CaloriesListState caloriesListState = Provider.of(context);
+    final CaloriesListState caloriesListState =
+        Provider.of(context); // this needs to only be around remaining cals
 
     final int goal = goalState.goal?.calorieGoal ?? 0;
-    final int calories = caloriesListState.calorieTotal;
+    final int calories = caloriesListState.calorieTotal ?? 0;
+    final int remainingCalories = goal - calories;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
@@ -64,7 +66,7 @@ class Dashboard extends StatelessWidget {
                 Flexible(
                   flex: 4,
                   child: Text(
-                    "${goal - calories}",
+                    "$remainingCalories",
                     style: Theme.of(context).textTheme.headline1,
                   ),
                 ),
