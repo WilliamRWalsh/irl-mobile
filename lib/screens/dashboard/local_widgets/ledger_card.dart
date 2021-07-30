@@ -25,7 +25,8 @@ class LedgerCard extends StatelessWidget {
         width: 300,
         child: Center(
           child: Text(
-            '+' + calories.calories.toString(),
+            calories.calories.toString(),
+            style: Theme.of(context).textTheme.bodyText1,
           ),
         ),
       ),

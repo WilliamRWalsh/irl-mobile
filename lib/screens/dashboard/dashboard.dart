@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:irl_mobile/firebase/calories_list_state.dart';
 import 'package:irl_mobile/firebase/goal_state.dart';
@@ -32,8 +34,12 @@ class Dashboard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Calorie Goal: $goal',
-                        style: Theme.of(context).textTheme.headline3,
+                        'Calorie Goal: ',
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                      Text(
+                        '$goal',
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -60,14 +66,20 @@ class Dashboard extends StatelessWidget {
                   flex: 1,
                   child: Text(
                     'Remaining Calories',
-                    style: Theme.of(context).textTheme.headline2,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        .copyWith(decoration: TextDecoration.underline),
                   ),
                 ),
                 Flexible(
                   flex: 4,
                   child: Text(
                     "$remainingCalories",
-                    style: Theme.of(context).textTheme.headline1,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1
+                        .copyWith(fontSize: 100),
                   ),
                 ),
                 Flexible(
