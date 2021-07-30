@@ -48,27 +48,36 @@ class Ledger extends StatelessWidget {
                   borderRadius: BorderRadius.circular(26),
                   color: Colors.black,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: SingleChildScrollView(
-                      child: caloriesListState.caloriesList != null
-                          ? Column(
-                              children: caloriesListState.caloriesList
-                                  .map((CaloriesModel calories) {
-                                return Column(
-                                  children: [
-                                    LedgerCard(
-                                      calories: calories,
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    )
-                                  ],
-                                );
-                              }).toList(),
-                            )
-                          : CircularProgressIndicator()),
-                ),
+                child: caloriesListState.caloriesList != null
+                    ? Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: caloriesListState.caloriesList.isEmpty
+                            ? Text(
+                                'Today\'s ledger is empty.',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline3
+                                    .copyWith(color: Colors.white),
+                                textAlign: TextAlign.center,
+                              )
+                            : SingleChildScrollView(
+                                child: Column(
+                                children: caloriesListState.caloriesList
+                                    .map((CaloriesModel calories) {
+                                  return Column(
+                                    children: [
+                                      LedgerCard(
+                                        calories: calories,
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      )
+                                    ],
+                                  );
+                                }).toList(),
+                              )),
+                      )
+                    : Center(child: CircularProgressIndicator()),
               ),
             ),
           ],
