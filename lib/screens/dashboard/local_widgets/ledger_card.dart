@@ -20,15 +20,16 @@ class LedgerCard extends StatelessWidget {
           ),
         ],
       ),
-      child: SizedBox(
-        height: 50,
-        width: 300,
-        child: Center(
-          child: Text(
-            calories.calories.toString(),
-            style: Theme.of(context).textTheme.bodyText1,
+      child: Stack(
+        children: [
+          Center(
+            child: Text(
+              calories.calories.toString(),
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
           ),
-        ),
+          Positioned(right: 10, top: 10, child: Icon(Icons.cancel_outlined)),
+        ],
       ),
     );
   }
