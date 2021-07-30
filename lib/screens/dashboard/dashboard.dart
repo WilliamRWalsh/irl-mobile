@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:irl_mobile/firebase/calories_list_state.dart';
 import 'package:irl_mobile/firebase/goal_state.dart';

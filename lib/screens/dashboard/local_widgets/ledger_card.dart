@@ -9,7 +9,7 @@ class LedgerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
+        color: Colors.white70,
         border: Border(),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [

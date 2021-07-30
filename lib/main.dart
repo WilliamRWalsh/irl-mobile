@@ -120,7 +120,7 @@ class SlimSamsApp extends StatelessWidget {
           fontSize: 24,
         ),
         // User variable
-        bodyText1: GoogleFonts.caveat(
+        bodyText1: GoogleFonts.pangolin(
           color: Colors.black,
           fontSize: 42,
         ),
