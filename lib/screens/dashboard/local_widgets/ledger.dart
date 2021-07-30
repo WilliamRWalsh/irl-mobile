@@ -14,19 +14,18 @@ class Ledger extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.only(bottom: 12.0),
-      child: Stack(
-        fit: StackFit.passthrough,
-        alignment: Alignment.bottomCenter,
-        children: [
-          Positioned(
-            child: Ink(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(26),
-                color: Colors.blue[200],
-              ),
-              child: SizedBox(
-                width: 332,
-                height: 50,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Stack(
+          fit: StackFit.passthrough,
+          alignment: Alignment.bottomCenter,
+          children: [
+            Positioned(
+              child: Ink(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(26),
+                  color: Colors.blue[200],
+                ),
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: Align(
@@ -39,39 +38,41 @@ class Ledger extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-          Positioned(
-            top: 0,
-            bottom: 45,
-            child: Ink(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(26),
-                color: Colors.black,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SingleChildScrollView(
-                    child: caloriesListState.caloriesList != null
-                        ? Column(
-                            children: caloriesListState.caloriesList
-                                .map((CaloriesModel calories) {
-                              return Column(
-                                children: [
-                                  LedgerCard(
-                                    calories: calories,
-                                  ),
-                                  SizedBox(
-                                    height: 8,
-                                  )
-                                ],
-                              );
-                            }).toList(),
-                          )
-                        : CircularProgressIndicator()),
+            Positioned(
+              top: 0,
+              bottom: 45,
+              left: 0,
+              right: 0,
+              child: Ink(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(26),
+                  color: Colors.black,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: SingleChildScrollView(
+                      child: caloriesListState.caloriesList != null
+                          ? Column(
+                              children: caloriesListState.caloriesList
+                                  .map((CaloriesModel calories) {
+                                return Column(
+                                  children: [
+                                    LedgerCard(
+                                      calories: calories,
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    )
+                                  ],
+                                );
+                              }).toList(),
+                            )
+                          : CircularProgressIndicator()),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

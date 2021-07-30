@@ -6,9 +6,14 @@ import 'package:irl_mobile/models/calories_modal.dart';
 
 class CaloriesListState extends ChangeNotifier {
   CaloriesListState({this.userID}) {
+    final now = DateTime.now();
+    final lastMidnight = DateTime(now.year, now.month, now.day);
+    final tonightMidnight = DateTime(now.year, now.month, now.day + 1);
     _caloriesStream ??= FirebaseFirestore.instance
         .collection('calories')
         .where("userID", isEqualTo: "TwSqyUZyg5Zy8k6IwAtNpMY8e1E3")
+        .where("createdAt",
+            isGreaterThanOrEqualTo: lastMidnight, isLessThan: tonightMidnight)
         .orderBy('createdAt', descending: false)
         .snapshots();
 
