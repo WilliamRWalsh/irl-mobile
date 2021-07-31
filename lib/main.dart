@@ -104,7 +104,7 @@ class SlimSamsApp extends StatelessWidget {
       brightness: Brightness.light,
       primaryColor: Colors.blue[300],
       errorColor: Colors.red,
-      accentColor: Colors.green[200],
+      accentColor: Colors.grey,
       buttonColor: Colors.yellow[600],
       primaryColorDark: Colors.black,
 

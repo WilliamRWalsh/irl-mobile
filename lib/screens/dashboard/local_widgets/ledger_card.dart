@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:irl_mobile/models/calories_modal.dart';
+import 'package:irl_mobile/screens/widgets/confirm_dailog.dart';
 
 class LedgerCard extends StatelessWidget {
   LedgerCard({this.calories});
@@ -28,7 +29,20 @@ class LedgerCard extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyText1,
             ),
           ),
-          Positioned(right: 10, top: 10, child: Icon(Icons.cancel_outlined)),
+          Positioned(
+              right: 0,
+              top: 0,
+              child: IconButton(
+                icon: Icon(Icons.cancel_outlined),
+                onPressed: () => showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return ConfirmDialog(
+                          widget: LedgerCard(
+                        calories: calories,
+                      ));
+                    }),
+              )),
         ],
       ),
     );
