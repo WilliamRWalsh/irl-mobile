@@ -61,21 +61,22 @@ class Ledger extends StatelessWidget {
                                 textAlign: TextAlign.center,
                               )
                             : SingleChildScrollView(
+                                reverse: true,
                                 child: Column(
-                                children: caloriesListState.caloriesList
-                                    .map((CaloriesModel calories) {
-                                  return Column(
-                                    children: [
-                                      LedgerCard(
-                                        calories: calories,
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      )
-                                    ],
-                                  );
-                                }).toList(),
-                              )),
+                                  children: caloriesListState.caloriesList
+                                      .map((CaloriesModel calories) {
+                                    return Column(
+                                      children: [
+                                        LedgerCard(
+                                          calories: calories,
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        )
+                                      ],
+                                    );
+                                  }).toList(),
+                                )),
                       )
                     : Center(child: CircularProgressIndicator()),
               ),
