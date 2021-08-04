@@ -13,7 +13,7 @@ class ConfirmDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       content: Padding(
-        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
