@@ -12,9 +12,6 @@ class EditGoalDialog extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (BuildContext context) => LoginState(),
-        ),
-        ChangeNotifierProvider(
           create: (BuildContext context) => GoalState(),
         ),
       ],
