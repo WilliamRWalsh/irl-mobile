@@ -6,6 +6,7 @@ import 'package:irl_mobile/screens/dashboard/dashboard.dart';
 import 'package:irl_mobile/screens/login/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:irl_mobile/screens/login/login_state.dart';
+import 'package:irl_mobile/theme.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -67,91 +68,37 @@ class _AppState extends State<App> {
 class SlimSamsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var materialApp = MaterialApp(
-      theme: myTheme(context),
-      home: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.blue[50],
-        body: MultiProvider(
-          providers: [
-            ChangeNotifierProvider(
-              create: (BuildContext context) => LoginState(),
-            ),
-            ChangeNotifierProvider(
-              create: (BuildContext context) => CaloriesListState(),
-            ),
-            ChangeNotifierProvider(
-              create: (BuildContext context) => GoalState(),
-            ),
-          ],
-          child: SafeArea(
-            child: Builder(
-              builder: (context) {
-                final LoginState loginState = Provider.of(context);
-                return loginState.isLogged ? Dashboard() : Login();
-              },
-            ),
-          ),
-        ),
+    return ChangeNotifierProvider(
+      create: (context) => LoginState(),
+      child: MaterialApp(
+        theme: myTheme(context),
+        routes: {
+          '/': (context) => Home(),
+          '/dashboard': (context) => Dashboard(),
+        },
       ),
     );
-    return materialApp;
   }
+}
 
-  ThemeData myTheme(BuildContext context) {
-    return ThemeData(
-      // Colors
-      brightness: Brightness.light,
-      primaryColor: Colors.blue[300],
-      errorColor: Colors.red,
-      accentColor: Colors.grey,
-      buttonColor: Colors.yellow[600],
-      primaryColorDark: Colors.black,
+class Home extends StatelessWidget {
+  const Home({
+    Key key,
+  }) : super(key: key);
 
-      // Widget Themes
-      inputDecorationTheme:
-          InputDecorationTheme(fillColor: Theme.of(context).primaryColorDark),
-
-      // Text
-      textTheme: TextTheme(
-        button: GoogleFonts.notoSans(
-          fontWeight: FontWeight.w800,
-          color: Colors.blueGrey[700],
-          fontSize: 24,
-        ),
-        // User variable
-        bodyText1: GoogleFonts.pangolin(
-          color: Colors.black,
-          fontSize: 42,
-        ),
-        // Labels
-        bodyText2: GoogleFonts.domine(
-          fontSize: 34,
-          color: Colors.black,
-          fontWeight: FontWeight.w600,
-        ),
-        // Display #1
-        headline1: GoogleFonts.domine(
-          fontSize: 40,
-          color: Colors.grey[800],
-          fontWeight: FontWeight.w300,
-        ),
-        // Display #2
-        headline2: GoogleFonts.caveat(
-          color: Colors.blueGrey[700],
-          fontWeight: FontWeight.bold,
-          fontSize: 44,
-        ),
-        headline3: GoogleFonts.caveat(
-          color: Colors.blueGrey[700],
-          fontWeight: FontWeight.bold,
-          fontSize: 50,
-        ),
-        headline4: TextStyle(
-          fontSize: 42,
-          fontWeight: FontWeight.bold,
-          color: Colors.blue[300],
-        ),
+  @override
+  Widget build(BuildContext context) {
+    final LoginState loginState = Provider.of(context);
+    if (loginState.isLogged) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => Navigator.pushNamed(
+            context,
+            '/dashboard',
+          ));
+    }
+    return Scaffold(
+      backgroundColor: Colors.blue[50],
+      body: SafeArea(
+        child: Login(),
       ),
     );
   }
