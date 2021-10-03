@@ -5,13 +5,18 @@ import 'package:flutter/material.dart';
 
 class LoginState extends ChangeNotifier {
   LoginState() {
+    if (_auth.currentUser != null) {
+      _isLogged = true;
+      notifyListeners();
+    }
     _auth.userChanges().listen((User user) {
       if (user == null) {
         print('User is currently signed out!');
       } else {
+        print('User is signed in!');
         _isLogged = true;
         _user = user;
-        print('User is signed in!');
+        notifyListeners();
       }
     });
   }
