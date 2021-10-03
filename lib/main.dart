@@ -94,29 +94,36 @@ class Home extends StatelessWidget {
             context,
             '/dashboard',
           ));
-      return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        CircleAvatar(
-          radius: 91,
-          backgroundColor: Colors.blue[400],
-          child: CircleAvatar(
-            foregroundImage: AssetImage('assets/sam-face.jpg'),
-            radius: 85,
+      return Scaffold(
+        backgroundColor: Colors.blue[50],
+        body: SafeArea(
+          child: Center(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              CircleAvatar(
+                radius: 91,
+                backgroundColor: Colors.blue[400],
+                child: CircleAvatar(
+                  foregroundImage: AssetImage('assets/sam-face.jpg'),
+                  radius: 85,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5.0, bottom: 15),
+                child: Text(
+                  'Slim Sam\'s Cal Calc',
+                  style: GoogleFonts.lobster(
+                    fontSize: 42,
+                    color: Colors.blue[400],
+                  ),
+                ),
+              ),
+            ]),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 5.0, bottom: 15),
-          child: Text(
-            'Slim Sam\'s Cal Calc',
-            style: GoogleFonts.lobster(
-              fontSize: 42,
-              color: Colors.blue[400],
-            ),
-          ),
-        ),
-      ]);
+      );
     }
     return Scaffold(
-      backgroundColor: Colors.blue[50],
       body: SafeArea(
         child: Login(),
       ),
