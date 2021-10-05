@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:irl_mobile/screens/login/login_state.dart';
 import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
 
 class AddCaloriesDialog extends StatelessWidget {
   @override
@@ -67,6 +66,7 @@ class AddCaloriesDialog extends StatelessWidget {
                           if (!_formKey.currentState.validate()) {
                             return;
                           }
+
                           FirebaseFirestore.instance
                               .collection('calories')
                               .doc()

@@ -4,6 +4,8 @@ import 'package:irl_mobile/firebase/goal_state.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/add_calories_dialog.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/edit_goal_dialog.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/ledger.dart';
+import 'package:irl_mobile/screens/history/history.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
@@ -17,6 +19,15 @@ class _DashboardState extends State<Dashboard> {
     setState(() {
       _selectedIndex = index;
     });
+    if (index == 0) {
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.leftToRight,
+          child: History(),
+        ),
+      );
+    }
   }
 
   @override
