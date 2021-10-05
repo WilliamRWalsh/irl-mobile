@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:irl_mobile/firebase/calories_firebase.dart';
 import 'package:irl_mobile/models/calories_modal.dart';
 import 'package:irl_mobile/screens/widgets/confirm_dailog.dart';
 
@@ -34,14 +35,21 @@ class LedgerCard extends StatelessWidget {
               top: 0,
               child: IconButton(
                 icon: Icon(Icons.cancel_outlined),
-                onPressed: () => showDialog(
+                onPressed: () async {
+                  bool isApproved = await showDialog(
                     context: context,
                     builder: (BuildContext context) {
                       return ConfirmDialog(
                           widget: LedgerCard(
                         calories: calories,
                       ));
-                    }),
+                    },
+                  );
+
+                  if (isApproved) {
+                    CaloriesFirebase().deleteCalories(calories.id);
+                  }
+                },
               )),
         ],
       ),
