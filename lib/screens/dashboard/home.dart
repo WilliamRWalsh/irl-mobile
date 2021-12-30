@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:irl_mobile/firebase/calories_list_state.dart';
+import 'package:irl_mobile/firebase/goal_state.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/add_calories_dialog.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/edit_goal_dialog.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/ledger.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final remainingCalories = 1000;
-    final goal = 10;
+    final GoalState goalState = Provider.of(context);
+    final CaloriesListState caloriesListState =
+        Provider.of(context); // this needs to only be around remaining cals
+
+    final int goal = goalState.goal?.calorieGoal ?? 0;
+    final int calories = caloriesListState.calorieTotal ?? 0;
+    final int remainingCalories = goal - calories;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: Center(
