@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:irl_mobile/firebase/calories_list_state.dart';
 import 'package:irl_mobile/firebase/goal_state.dart';
+import 'package:irl_mobile/screens/dashboard/home.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/add_calories_dialog.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/edit_goal_dialog.dart';
 import 'package:irl_mobile/screens/dashboard/local_widgets/ledger.dart';
@@ -14,19 +15,20 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  int _selectedIndex = 1;
+  int selectedIndex = 1;
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      selectedIndex = index;
     });
     if (index == 0) {
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.leftToRight,
-          child: History(),
-        ),
-      );
+      // Navigator.pushNamed(context, '/history');
+      // Navigator.push(
+      //   context,
+      //   PageTransition(
+      //     type: PageTransitionType.leftToRight,
+      //     child: History(),
+      //   ),
+      // );
     }
   }
 
@@ -53,111 +55,32 @@ class _DashboardState extends State<Dashboard> {
             final int remainingCalories = goal - calories;
             return Scaffold(
               resizeToAvoidBottomInset: false,
-              body: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Flexible(
-                        flex: 1,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Calorie Goal: ',
-                              style: Theme.of(context).textTheme.bodyText2,
-                            ),
-                            Text(
-                              '$goal',
-                              style: Theme.of(context).textTheme.bodyText1,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: GestureDetector(
-                                onTap: () => showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return EditGoalDialog();
-                                    }),
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.yellow,
-                                  radius: 15,
-                                  child: Icon(
-                                    Icons.edit_rounded,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Flexible(
-                        flex: 1,
-                        child: Text(
-                          'Remaining Calories',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2
-                              .copyWith(decoration: TextDecoration.underline),
-                        ),
-                      ),
-                      Flexible(
-                        flex: 4,
-                        child: Text(
-                          "$remainingCalories",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText1
-                              .copyWith(fontSize: 100),
-                        ),
-                      ),
-                      Flexible(
-                        fit: FlexFit.tight,
-                        flex: 8,
-                        child: Ledger(),
-                      ),
-                      Flexible(
-                        flex: 1,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: Size(195, 80),
-                            primary: Theme.of(context).buttonColor,
-                            onPrimary: Theme.of(context).primaryColorDark,
-                            textStyle: Theme.of(context).textTheme.button,
-                          ),
-                          onPressed: () => showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AddCaloriesDialog();
-                              }),
-                          child: Text('Add Calories'),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              body: (selectedIndex == 1) ? Home() : History(),
+
+              //  Navigator(
+              //   onGenerateRoute: (settings) {
+              //     Widget page = Home();
+              //     if (settings.name == '/history') page = History();
+              //     return MaterialPageRoute(builder: (_) => page);
+              //   },
+              // ),
               bottomNavigationBar: BottomNavigationBar(
                 backgroundColor: Colors.black,
                 items: const <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
-                    icon: Icon(Icons.history),
-                    label: 'History',
+                    icon: Icon(Icons.auto_graph),
+                    label: 'Progress',
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.home),
                     label: 'Home',
                   ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.settings),
-                    label: 'Settings',
-                  ),
+                  // BottomNavigationBarItem(
+                  //   icon: Icon(Icons.settings),
+                  //   label: 'Settings',
+                  // ),
                 ],
-                currentIndex: _selectedIndex,
+                currentIndex: selectedIndex,
                 selectedItemColor: Theme.of(context).primaryColor,
                 unselectedItemColor: Colors.white,
                 onTap: _onItemTapped,

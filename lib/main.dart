@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:irl_mobile/screens/dashboard/dashboard.dart';
+import 'package:irl_mobile/screens/history/history.dart';
 import 'package:irl_mobile/screens/login/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:irl_mobile/screens/login/login_state.dart';
@@ -75,6 +76,8 @@ class SlimSamsApp extends StatelessWidget {
         routes: {
           '/': (context) => Home(),
           '/dashboard': (context) => Dashboard(),
+          '/home': (context) => Home(),
+          '/history': (context) => History(),
         },
       ),
     );
