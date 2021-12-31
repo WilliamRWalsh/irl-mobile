@@ -3,6 +3,7 @@ import 'package:irl_mobile/firebase/calories_list_state.dart';
 import 'package:irl_mobile/firebase/goal_state.dart';
 import 'package:irl_mobile/screens/dashboard/home.dart';
 import 'package:irl_mobile/screens/dashboard/progress.dart';
+import 'package:irl_mobile/screens/login/login_state.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
@@ -15,14 +16,17 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    final LoginState loginState = Provider.of(context);
     return SafeArea(
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(
-            create: (BuildContext context) => CaloriesListState(),
+            create: (BuildContext context) =>
+                CaloriesListState(userID: loginState.user.uid),
           ),
           ChangeNotifierProvider(
-            create: (BuildContext context) => GoalState(),
+            create: (BuildContext context) =>
+                GoalState(userID: loginState.user.uid),
           ),
         ],
         child: Builder(

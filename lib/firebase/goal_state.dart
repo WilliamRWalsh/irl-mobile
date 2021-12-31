@@ -5,19 +5,31 @@ import 'package:flutter/material.dart';
 import 'package:irl_mobile/models/goal_modal.dart';
 
 class GoalState extends ChangeNotifier {
-  GoalState() {
+  GoalState({this.userID}) {
     _goalStream ??= FirebaseFirestore.instance
         .collection('goals')
-        .where("userID", isEqualTo: "TwSqyUZyg5Zy8k6IwAtNpMY8e1E3")
+        .where("userID", isEqualTo: userID)
         .snapshots();
 
     _subscription = _goalStream.listen((snapshot) {
-      Map<String, dynamic> data = snapshot.docs.last.data();
-      data['id'] = snapshot.docs.first.id;
+      List docs = snapshot.docs;
+      if (docs.isEmpty) {
+        FirebaseFirestore.instance.collection('goals').doc().set(
+          {
+            'userID': userID,
+            'calorieGoal': 2000,
+          },
+        );
+        return;
+      }
+      Map<String, dynamic> data = docs.last.data();
+      data['id'] = docs.first.id;
       _goal = GoalModel.fromJson(data);
       notifyListeners();
     });
   }
+
+  String userID;
 
   StreamSubscription<QuerySnapshot> _subscription;
   Stream<QuerySnapshot> _goalStream;

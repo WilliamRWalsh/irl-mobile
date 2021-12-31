@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:irl_mobile/models/calories_modal.dart';
+import 'package:irl_mobile/screens/login/login_state.dart';
 
 class CaloriesListState extends ChangeNotifier {
   CaloriesListState({this.userID}) {
@@ -11,7 +12,7 @@ class CaloriesListState extends ChangeNotifier {
     final tonightMidnight = DateTime(now.year, now.month, now.day + 1);
     _caloriesStream ??= FirebaseFirestore.instance
         .collection('calories')
-        .where("userID", isEqualTo: "TwSqyUZyg5Zy8k6IwAtNpMY8e1E3")
+        .where("userID", isEqualTo: userID)
         .where("createdAt",
             isGreaterThanOrEqualTo: lastMidnight, isLessThan: tonightMidnight)
         .orderBy('createdAt', descending: false)
@@ -32,6 +33,8 @@ class CaloriesListState extends ChangeNotifier {
       notifyListeners();
     });
   }
+
+  void updateDeps(LoginState loginState) {}
 
   String userID;
 

@@ -11,9 +11,9 @@ class LoginState extends ChangeNotifier {
     }
     _auth.userChanges().listen((User user) {
       if (user == null) {
-        print('User is currently signed out!');
+        log('LoginState: User is currently signed out!', level: 1);
       } else {
-        print('User is signed in!');
+        log('LoginState: User is signed in!', level: 1);
         _isLogged = true;
         _user = user;
         notifyListeners();
@@ -39,7 +39,6 @@ class LoginState extends ChangeNotifier {
   set verificationId(String verificationId) => _verificationId;
 
   Future verifyCode(String smsCode) async {
-    print('LoginState: _pendingVerification = true');
     _pendingVerification = true;
     notifyListeners();
 
@@ -57,20 +56,18 @@ class LoginState extends ChangeNotifier {
       return;
     }
     _isLogged = true;
+    _pendingVerification = false;
     notifyListeners();
-    print('LoginState: _pendingVerification = false');
   }
 
   Future verifyPhoneNumber(String number) async {
-    print('LoginState: _pendingVerification = true');
     _pendingVerification = true;
     notifyListeners();
 
     await _auth.verifyPhoneNumber(
       phoneNumber: number,
       verificationCompleted: (PhoneAuthCredential credential) {
-        // is this auto?
-        print('LoginState: verificationCompleted');
+        log('LoginState: verificationCompleted', level: 1);
       },
       verificationFailed: (FirebaseAuthException e) {
         log('LoginState: verificationFailed - $e', level: 2);
@@ -81,9 +78,6 @@ class LoginState extends ChangeNotifier {
         _isVerify = true;
         _pendingVerification = false;
         notifyListeners();
-
-        print('LoginState: codeSent: ' + verificationId);
-        print('LoginState: _pendingVerification = false');
       },
       codeAutoRetrievalTimeout: (String verificationId) {
         log('LoginState: codeAutoRetrievalTimeout', level: 1);

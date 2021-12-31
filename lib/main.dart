@@ -91,7 +91,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginState loginState = Provider.of(context, listen: false);
+    final LoginState loginState = Provider.of(context);
     if (loginState.isLogged) {
       WidgetsBinding.instance.addPostFrameCallback((_) => Navigator.pushNamed(
             context,
