@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:irl_mobile/firebase/calories_list_state.dart';
 import 'package:irl_mobile/firebase/goal_state.dart';
 import 'package:irl_mobile/screens/dashboard/home.dart';
-import 'package:irl_mobile/screens/history/progress.dart';
+import 'package:irl_mobile/screens/dashboard/progress.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
