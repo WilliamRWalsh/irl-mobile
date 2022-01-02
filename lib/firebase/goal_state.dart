@@ -25,7 +25,7 @@ class GoalState extends ChangeNotifier {
         return;
       }
       Map<String, dynamic> data = docs.last.data();
-      data['id'] = docs.first.id;
+      data['id'] = docs.last.id;
       _goal = GoalModel.fromJson(data);
       notifyListeners();
     });

@@ -47,6 +47,7 @@ class LedgerCard extends StatelessWidget {
                   );
 
                   if (isApproved) {
+                    // TODO: null check
                     CaloriesFirebase().deleteCalories(calories.id);
                   }
                 },
