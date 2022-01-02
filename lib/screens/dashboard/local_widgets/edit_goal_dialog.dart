@@ -66,7 +66,8 @@ class EditGoalDialog extends StatelessWidget {
                             .update(
                           {
                             'userID': loginState.user.uid,
-                            'calorieGoal': int.parse(goalController.text),
+                            'calorieGoal': int.parse(
+                                goalController.text), //TODO: null here
                           },
                         );
                         Navigator.pop(context);

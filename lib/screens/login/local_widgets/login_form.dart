@@ -28,10 +28,12 @@ class LoginForm extends StatelessWidget {
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.phone),
                 fillColor: Colors.black,
+                counterText: "",
                 errorStyle: TextStyle(
                   fontSize: 16.0,
                 ),
               ),
+              maxLength: 10,
               autofocus: true,
               validator: (String? val) {
                 if (val?.isEmpty ?? true) {
@@ -42,9 +44,6 @@ class LoginForm extends StatelessWidget {
                   return 'Invalid phone number';
                 }
                 return null;
-              },
-              onSaved: (val) {
-                // Form.of(context)!.validate();
               },
             ),
           ),

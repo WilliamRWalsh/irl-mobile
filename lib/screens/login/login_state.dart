@@ -34,11 +34,14 @@ class LoginState extends ChangeNotifier {
   bool _pendingVerification = false;
   bool get pendingVerification => _pendingVerification;
 
+  bool _invalidCode = false;
+  bool get invalidCode => _invalidCode;
+
   String _verificationId;
   String get verificationId => _verificationId;
   set verificationId(String verificationId) => _verificationId;
 
-  Future verifyCode(String smsCode) async {
+  Future<void> verifyCode(String smsCode) async {
     _pendingVerification = true;
     notifyListeners();
 
@@ -51,12 +54,15 @@ class LoginState extends ChangeNotifier {
       await _auth.signInWithCredential(credential);
     } catch (error) {
       _pendingVerification = false;
+      _invalidCode = true;
       notifyListeners();
-      log('LoginState: verifyCode - $error', level: 2);
+      log('LoginState: $error', level: 2);
       return;
     }
     _isLogged = true;
     _pendingVerification = false;
+    _invalidCode = false;
+
     notifyListeners();
   }
 

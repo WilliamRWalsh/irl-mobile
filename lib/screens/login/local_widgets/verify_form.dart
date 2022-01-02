@@ -1,3 +1,4 @@
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:slim_sams_cal_calc/screens/login/login_state.dart';
 import 'package:provider/provider.dart';
@@ -18,8 +19,8 @@ class VerifyForm extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            width: 106,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
             child: TextFormField(
               controller: codeController,
               maxLength: 6,
@@ -30,10 +31,32 @@ class VerifyForm extends StatelessWidget {
                 hintText: '6 digit code',
                 fillColor: Colors.black,
                 counterText: "",
+                errorStyle: TextStyle(
+                  fontSize: 16.0,
+                ),
               ),
               autofocus: true,
+              validator: (String? val) {
+                if (val?.isEmpty ?? true) {
+                  return 'Please provide the code texted to you';
+                }
+
+                if (val!.length != 6) {
+                  return 'Must be 6 digits';
+                }
+                return null;
+              },
             ),
           ),
+          if (loginState.invalidCode)
+            Text(
+              'Invalid code',
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 16,
+                fontFamily: 'AvenirNext',
+              ),
+            ),
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: ElevatedButton(
@@ -44,10 +67,11 @@ class VerifyForm extends StatelessWidget {
                 textStyle: Theme.of(context).textTheme.button,
               ),
               onPressed: () async {
-                _formKey.currentState.save();
-                if (!_formKey.currentState.validate()) {
+                _formKey.currentState?.save();
+                if (!(_formKey.currentState?.validate() ?? false)) {
                   return;
                 }
+
                 await loginState.verifyCode(codeController.text);
               },
               child: Text('Verify Code'),
