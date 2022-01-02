@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80c73a0c-b937-46e8-b0ec-04b4eec3ed6c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/irl_mobile_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android/irl_mobile_android.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/login/local_widgets/login_form.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login/local_widgets/login_form.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,17 +39,9 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="263" y="347" key="SettingsEditor" timestamp="1624219572429">
+    <state x="942" y="372" width="1200" height="800" key="AVDManager" timestamp="1641090174087">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="263" y="347" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1624219572429" />
-    <state x="418" y="333" width="672" height="677" key="run.anything.popup" timestamp="1624223665514">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="418" y="333" width="672" height="677" key="run.anything.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1624223665514" />
-    <state x="425" y="421" width="672" height="678" key="search.everywhere.popup" timestamp="1624219703198">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="425" y="421" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1624219703198" />
+    <state x="942" y="372" width="1200" height="800" key="AVDManager/0.0.2560.1400@0.0.2560.1400" timestamp="1641090174087" />
   </component>
 </project>

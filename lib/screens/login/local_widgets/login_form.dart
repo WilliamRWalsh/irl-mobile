@@ -1,3 +1,4 @@
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:slim_sams_cal_calc/screens/login/login_state.dart';
 import 'package:provider/provider.dart';
@@ -19,8 +20,7 @@ class LoginForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding:
-                const EdgeInsets.only(left: 100, right: 100, top: 8, bottom: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
             child: TextFormField(
               controller: phoneController,
               keyboardType: TextInputType.phone,
@@ -28,10 +28,23 @@ class LoginForm extends StatelessWidget {
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.phone),
                 fillColor: Colors.black,
+                errorStyle: TextStyle(
+                  fontSize: 16.0,
+                ),
               ),
               autofocus: true,
+              validator: (String? val) {
+                if (val?.isEmpty ?? true) {
+                  return 'Please provide phone number';
+                }
+
+                if (val!.length != 10) {
+                  return 'Invalid phone number';
+                }
+                return null;
+              },
               onSaved: (val) {
-                phoneController.text = '+1$val';
+                // Form.of(context)!.validate();
               },
             ),
           ),
@@ -45,12 +58,11 @@ class LoginForm extends StatelessWidget {
                 textStyle: Theme.of(context).textTheme.button,
               ),
               onPressed: () async {
-                _formKey.currentState.save();
-                if (!_formKey.currentState.validate()) {
+                _formKey.currentState?.save();
+                if (!(_formKey.currentState?.validate() ?? false)) {
                   return;
                 }
-
-                await loginState.verifyPhoneNumber(phoneController.text);
+                await loginState.verifyPhoneNumber('+1${phoneController.text}');
               },
               child: Text('Verify Phone Number'),
             ),
