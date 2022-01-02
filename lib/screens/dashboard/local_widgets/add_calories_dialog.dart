@@ -1,3 +1,5 @@
+// @dart=2.12
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:slim_sams_cal_calc/screens/login/login_state.dart';
@@ -16,7 +18,7 @@ class AddCaloriesDialog extends StatelessWidget {
           onConfirm: (String value) async {
             FirebaseFirestore.instance.collection('calories').doc().set(
               {
-                'userID': loginState.user.uid,
+                'userID': loginState.user?.uid ?? '',
                 'calories': int.parse(value),
                 'createdAt': DateTime.now(),
               },

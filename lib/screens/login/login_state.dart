@@ -1,3 +1,5 @@
+// @dart=2.12
+
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,7 +11,7 @@ class LoginState extends ChangeNotifier {
       _isLogged = true;
       notifyListeners();
     }
-    _auth.userChanges().listen((User user) {
+    _auth.userChanges().listen((User? user) {
       if (user == null) {
         log('LoginState: User is currently signed out!', level: 1);
       } else {
@@ -21,8 +23,8 @@ class LoginState extends ChangeNotifier {
     });
   }
 
-  User _user;
-  User get user => _user;
+  User? _user;
+  User? get user => _user;
 
   bool _isLogged = false;
   bool get isLogged => _isLogged;
@@ -37,16 +39,16 @@ class LoginState extends ChangeNotifier {
   bool _invalidCode = false;
   bool get invalidCode => _invalidCode;
 
-  String _verificationId;
-  String get verificationId => _verificationId;
-  set verificationId(String verificationId) => _verificationId;
+  String? _verificationId;
+  String? get verificationId => _verificationId;
+  set verificationId(String? verificationId) => _verificationId;
 
   Future<void> verifyCode(String smsCode) async {
     _pendingVerification = true;
     notifyListeners();
 
-    PhoneAuthCredential credential = PhoneAuthProvider.credential(
-      verificationId: verificationId,
+    AuthCredential credential = PhoneAuthProvider.credential(
+      verificationId: verificationId ?? '',
       smsCode: smsCode,
     );
 

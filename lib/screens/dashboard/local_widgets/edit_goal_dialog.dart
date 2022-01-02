@@ -1,3 +1,5 @@
+// @dart=2.12
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:slim_sams_cal_calc/firebase/goal_state.dart';
@@ -8,15 +10,17 @@ import 'package:slim_sams_cal_calc/screens/widgets/my_dialog.dart';
 class EditGoalDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final LoginState loginState = Provider.of(context, listen: false);
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (BuildContext context) => GoalState(),
+          create: (BuildContext context) =>
+              GoalState(userID: loginState.user?.uid ?? ''),
         ),
       ],
       child: Builder(
         builder: (BuildContext context) {
-          final LoginState loginState = Provider.of(context, listen: false);
           final GoalState goalState = Provider.of(context, listen: false);
 
           return MyDialog(
@@ -27,7 +31,7 @@ class EditGoalDialog extends StatelessWidget {
                   .doc(goalState.goal?.id ?? null)
                   .update(
                 {
-                  'userID': loginState.user.uid,
+                  'userID': loginState.user?.uid ?? '',
                   'calorieGoal': int.parse(value),
                 },
               );

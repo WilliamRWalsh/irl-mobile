@@ -1,3 +1,5 @@
+// @dart=2.12
+
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,8 +9,8 @@ import 'package:slim_sams_cal_calc/models/goal_modal.dart';
 const DEFAULT_GOAL = 2000;
 
 class GoalState extends ChangeNotifier {
-  GoalState({this.userID}) {
-    _goalStream ??= FirebaseFirestore.instance
+  GoalState({required this.userID}) {
+    _goalStream = FirebaseFirestore.instance
         .collection('goals')
         .where("userID", isEqualTo: userID)
         .snapshots();
@@ -33,15 +35,15 @@ class GoalState extends ChangeNotifier {
 
   String userID;
 
-  StreamSubscription<QuerySnapshot> _subscription;
-  Stream<QuerySnapshot> _goalStream;
+  late StreamSubscription<QuerySnapshot> _subscription;
+  late Stream<QuerySnapshot> _goalStream;
 
-  GoalModel _goal;
-  GoalModel get goal => _goal;
+  GoalModel? _goal;
+  GoalModel? get goal => _goal;
 
   @override
   void dispose() {
-    _subscription?.cancel();
+    _subscription.cancel();
     super.dispose();
   }
 }
