@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:irl_mobile/firebase/calories_list_state.dart';
-import 'package:irl_mobile/firebase/goal_state.dart';
-import 'package:irl_mobile/screens/dashboard/home.dart';
-import 'package:irl_mobile/screens/dashboard/progress.dart';
-import 'package:irl_mobile/screens/login/login_state.dart';
+import 'package:slim_sams_cal_calc/firebase/calories_list_state.dart';
+import 'package:slim_sams_cal_calc/firebase/goal_state.dart';
+import 'package:slim_sams_cal_calc/screens/dashboard/home.dart';
+import 'package:slim_sams_cal_calc/screens/dashboard/progress.dart';
+import 'package:slim_sams_cal_calc/screens/login/login_state.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {

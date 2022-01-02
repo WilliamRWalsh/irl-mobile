@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:irl_mobile/firebase/calories_firebase.dart';
-import 'package:irl_mobile/models/calories_modal.dart';
-import 'package:irl_mobile/screens/widgets/confirm_dailog.dart';
+import 'package:slim_sams_cal_calc/firebase/calories_firebase.dart';
+import 'package:slim_sams_cal_calc/models/calories_modal.dart';
+import 'package:slim_sams_cal_calc/screens/widgets/confirm_dailog.dart';
 
 class LedgerCard extends StatelessWidget {
   LedgerCard({this.calories});

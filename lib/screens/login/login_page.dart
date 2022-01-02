@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:irl_mobile/screens/login/local_widgets/login_form.dart';
-import 'package:irl_mobile/screens/login/local_widgets/verify_form.dart';
-import 'package:irl_mobile/screens/login/login_state.dart';
+import 'package:slim_sams_cal_calc/screens/login/local_widgets/login_form.dart';
+import 'package:slim_sams_cal_calc/screens/login/local_widgets/verify_form.dart';
+import 'package:slim_sams_cal_calc/screens/login/login_state.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatelessWidget {

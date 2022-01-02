@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:irl_mobile/firebase/calories_list_state.dart';
-import 'package:irl_mobile/firebase/goal_state.dart';
-import 'package:irl_mobile/screens/dashboard/local_widgets/add_calories_dialog.dart';
-import 'package:irl_mobile/screens/dashboard/local_widgets/edit_goal_dialog.dart';
-import 'package:irl_mobile/screens/dashboard/local_widgets/ledger.dart';
+import 'package:slim_sams_cal_calc/firebase/calories_list_state.dart';
+import 'package:slim_sams_cal_calc/firebase/goal_state.dart';
+import 'package:slim_sams_cal_calc/screens/dashboard/local_widgets/add_calories_dialog.dart';
+import 'package:slim_sams_cal_calc/screens/dashboard/local_widgets/edit_goal_dialog.dart';
+import 'package:slim_sams_cal_calc/screens/dashboard/local_widgets/ledger.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:irl_mobile/screens/dashboard/dashboard.dart';
-import 'package:irl_mobile/screens/dashboard/progress.dart';
-import 'package:irl_mobile/screens/login/login_page.dart';
+import 'package:slim_sams_cal_calc/screens/dashboard/dashboard.dart';
+import 'package:slim_sams_cal_calc/screens/dashboard/progress.dart';
+import 'package:slim_sams_cal_calc/screens/login/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:irl_mobile/screens/login/login_state.dart';
-import 'package:irl_mobile/theme.dart';
+import 'package:slim_sams_cal_calc/screens/login/login_state.dart';
+import 'package:slim_sams_cal_calc/theme.dart';
 import 'package:provider/provider.dart';
 
 void main() {

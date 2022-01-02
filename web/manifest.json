@@ -1,6 +1,6 @@
 {
-    "name": "irl_mobile",
-    "short_name": "irl_mobile",
+    "name": "slim_sams_cal_calc",
+    "short_name": "slim_sams_cal_calc",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
