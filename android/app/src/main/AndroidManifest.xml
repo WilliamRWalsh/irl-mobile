@@ -1,8 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.woodalesoftware.slim_sams_cal_calc">
+    package="com.woodalesoftware.slim_sams_cal_calc"
+     android:versionCode="1"
+     android:versionName="1.0.0"
+>
     <!-- Required to fetch data from the internet. -->
     <uses-permission android:name="android.permission.INTERNET" />
-
    <application
         android:label="Slim Sam's Cal Calc"
         android:icon="@mipmap/ic_launcher">

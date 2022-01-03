@@ -12,14 +12,19 @@ class Progress extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
+              'Track Progress',
+              style:
+                  Theme.of(context).textTheme.headline2.copyWith(fontSize: 54),
+            ),
+            Image(
+              image: AssetImage('assets/sam-construction.png'),
+            ),
+            Text(
               'Coming Soon!',
               style: GoogleFonts.lobster(
                 fontSize: 42,
                 color: Colors.blue[400],
               ),
-            ),
-            Image(
-              image: AssetImage('assets/sam-construction.png'),
             ),
           ],
         ),

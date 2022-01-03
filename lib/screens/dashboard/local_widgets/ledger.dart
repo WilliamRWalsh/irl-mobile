@@ -28,7 +28,7 @@ class Ledger extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(
-                    bottom: 8.0,
+                    bottom: 2.0,
                   ),
                   child: Align(
                     child: Text(

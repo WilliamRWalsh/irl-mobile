@@ -58,6 +58,12 @@ class Home extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          spreadRadius: 2,
+                          color: Colors.black26,
+                          offset: Offset.fromDirection(1.1, 3))
+                    ],
                     border: Border.all(color: Colors.black, width: 3),
                     borderRadius: BorderRadius.circular(12),
                     color: Colors.blue[200]),
