@@ -27,7 +27,9 @@ class Ledger extends StatelessWidget {
                   color: Colors.blue[200],
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
+                  padding: const EdgeInsets.only(
+                    bottom: 8.0,
+                  ),
                   child: Align(
                     child: Text(
                       'Total: $totalCalories',

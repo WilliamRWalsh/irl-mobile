@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
     final int calories = caloriesListState.calorieTotal ?? 0;
     final int remainingCalories = goal - calories;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,21 +36,18 @@ class Home extends StatelessWidget {
                     '$goal',
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () => showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return EditGoalDialog();
-                          }),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.yellow,
-                        radius: 15,
-                        child: Icon(
-                          Icons.edit_rounded,
-                          color: Colors.black,
-                        ),
+                  GestureDetector(
+                    onTap: () => showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return EditGoalDialog();
+                        }),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.yellow,
+                      radius: 15,
+                      child: Icon(
+                        Icons.edit_rounded,
+                        color: Colors.black,
                       ),
                     ),
                   )
