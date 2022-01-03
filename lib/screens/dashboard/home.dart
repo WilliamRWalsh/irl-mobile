@@ -59,23 +59,27 @@ class Home extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.black, width: 3),
-                    borderRadius: BorderRadius.circular(8)),
-                child: Flexible(
-                  flex: 4,
-                  child: Column(
-                    children: [
-                      Text(
-                        'Remaining Calories',
-                        style: Theme.of(context).textTheme.bodyText2,
-                      ),
-                      Text(
-                        "$remainingCalories",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText1
-                            .copyWith(fontSize: 100),
-                      ),
-                    ],
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.blue[200]),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Flexible(
+                    flex: 4,
+                    child: Column(
+                      children: [
+                        Text(
+                          'Remaining Calories',
+                          style: Theme.of(context).textTheme.bodyText2,
+                        ),
+                        Text(
+                          "$remainingCalories",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1
+                              .copyWith(fontSize: 100),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
