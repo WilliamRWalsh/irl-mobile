@@ -1,11 +1,13 @@
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:slim_sams_cal_calc/firebase/calories_firebase.dart';
 import 'package:slim_sams_cal_calc/models/calories_modal.dart';
 import 'package:slim_sams_cal_calc/screens/widgets/confirm_dailog.dart';
 
 class LedgerCard extends StatelessWidget {
-  LedgerCard({this.calories});
+  LedgerCard({required this.calories, this.canDelete});
   final CaloriesModel calories;
+  final bool? canDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +38,16 @@ class LedgerCard extends StatelessWidget {
               child: IconButton(
                 icon: Icon(Icons.cancel_outlined),
                 onPressed: () async {
+                  if (!(canDelete ?? true)) {
+                    return;
+                  }
                   bool isApproved = await showDialog(
                     context: context,
                     builder: (BuildContext context) {
                       return ConfirmDialog(
                           widget: LedgerCard(
                         calories: calories,
+                        canDelete: false,
                       ));
                     },
                   );
