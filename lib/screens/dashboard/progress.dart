@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Progress extends StatelessWidget {
   @override
@@ -7,7 +8,21 @@ class Progress extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 75, horizontal: 50),
-        child: TimeSeriesBar(TimeSeriesBar._createSampleData()),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              'Coming Soon!',
+              style: GoogleFonts.lobster(
+                fontSize: 42,
+                color: Colors.blue[400],
+              ),
+            ),
+            Image(
+              image: AssetImage('assets/sam-construction.png'),
+            ),
+          ],
+        ),
       ),
     );
   }
