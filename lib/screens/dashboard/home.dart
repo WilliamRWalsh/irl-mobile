@@ -54,24 +54,30 @@ class Home extends StatelessWidget {
                 ],
               ),
             ),
-            Flexible(
-              flex: 1,
-              child: Text(
-                'Remaining Calories',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText2
-                    .copyWith(decoration: TextDecoration.underline),
-              ),
-            ),
-            Flexible(
-              flex: 4,
-              child: Text(
-                "$remainingCalories",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    .copyWith(fontSize: 100),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black, width: 3),
+                    borderRadius: BorderRadius.circular(8)),
+                child: Flexible(
+                  flex: 4,
+                  child: Column(
+                    children: [
+                      Text(
+                        'Remaining Calories',
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                      Text(
+                        "$remainingCalories",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText1
+                            .copyWith(fontSize: 100),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
             Flexible(
