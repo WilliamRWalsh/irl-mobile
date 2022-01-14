@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:slim_sams_cal_calc/notifications/daily_reminders.dart';
 import 'package:slim_sams_cal_calc/screens/dashboard/dashboard.dart';
 import 'package:slim_sams_cal_calc/screens/dashboard/progress.dart';
 import 'package:slim_sams_cal_calc/screens/login/login_page.dart';
@@ -36,6 +37,7 @@ class _AppState extends State<App> {
         _error = true;
       });
     }
+    startDailyReminders();
   }
 
   @override

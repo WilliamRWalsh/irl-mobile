@@ -27,6 +27,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
     compileSdkVersion 30
 
     sourceSets {
@@ -41,6 +42,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
+        targetSdkVersion rootProject.ext.targetSdkVersion
     }
 
     buildTypes {
