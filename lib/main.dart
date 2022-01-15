@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:slim_sams_cal_calc/notifications/daily_reminders.dart';
@@ -11,6 +12,37 @@ import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  startDailyReminders();
+
+  AwesomeNotifications().initialize(
+      null,
+      [
+        NotificationChannel(
+          channelGroupKey: 'basic_tests',
+          channelKey: 'basic_channel',
+          channelName: 'Basic notifications',
+          channelDescription: 'Notification channel for basic tests',
+          defaultColor: Color(0xFF9D50DD),
+          ledColor: Colors.white,
+          importance: NotificationImportance.High,
+        ),
+      ],
+      channelGroups: [
+        NotificationChannelGroup(
+          channelGroupkey: 'basic_tests',
+          channelGroupName: 'Basic tests',
+        ),
+      ],
+      debug: true);
+
+  AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+    if (!isAllowed) {
+      // This is just a basic example. For real apps, you must show some
+      // friendly dialog box before call the request method.
+      // This is very important to not harm the user experience
+      AwesomeNotifications().requestPermissionToSendNotifications();
+    }
+  });
   runApp(App());
 }
 
@@ -37,7 +69,6 @@ class _AppState extends State<App> {
         _error = true;
       });
     }
-    startDailyReminders();
   }
 
   @override
@@ -70,6 +101,12 @@ class SlimSamsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     precacheImage(AssetImage("assets/sam-face.jpg"), context);
+
+    AwesomeNotifications()
+        .actionStream
+        .listen((ReceivedNotification receivedNotification) {
+      Navigator.of(context).pushNamed('/NotificationPage');
+    });
 
     return ChangeNotifierProvider(
       create: (context) => LoginState(),
