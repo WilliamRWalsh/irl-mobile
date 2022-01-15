@@ -1,7 +1,10 @@
 // @dart=2.12
+import 'dart:developer';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:background_fetch/background_fetch.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> startDailyReminders() async {
   // Configure BackgroundFetch.
@@ -9,18 +12,6 @@ Future<void> startDailyReminders() async {
     var status = await BackgroundFetch.configure(
         BackgroundFetchConfig(
           minimumFetchInterval: 15,
-          /*
-        forceAlarmManager: false,
-        stopOnTerminate: false,
-        startOnBoot: true,
-        enableHeadless: true,
-        requiresBatteryNotLow: false,
-        requiresCharging: false,
-        requiresStorageNotLow: false,
-        requiresDeviceIdle: false,
-        requiredNetworkType: NetworkType.NONE,
-
-         */
         ),
         _onBackgroundFetch,
         _onBackgroundFetchTimeout);
@@ -33,9 +24,26 @@ Future<void> startDailyReminders() async {
 
 void _onBackgroundFetch(String taskId) async {
   await Firebase.initializeApp();
-  print('Background Task: $taskId');
+  log('BackgroundFetch: Started', level: 0);
 
-  // check sharedPrefs if I should run
+  final currentDayOfMonth = DateTime.now().day;
+  final currentHour = DateTime.now().hour;
+
+  if (currentHour < 12) {
+    log('BackgroundFetch: Before noon', level: 0);
+    return;
+  }
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  int? lastReminderDOM = prefs.getInt('lastReminderDOM');
+
+  if (currentDayOfMonth == lastReminderDOM) {
+    log('BackgroundFetch: Already run today', level: 0);
+    return;
+  }
+
+  await prefs.setInt('lastReminderDOM', currentDayOfMonth);
+
   await AwesomeNotifications().createNotification(
     content: NotificationContent(
       id: 1,
@@ -43,11 +51,10 @@ void _onBackgroundFetch(String taskId) async {
       title: "Don't forget to track your calories!",
     ),
   );
-  // mark run
   BackgroundFetch.finish(taskId);
 }
 
 void _onBackgroundFetchTimeout(String taskId) {
-  //
+  log('BackgroundFetch: Timeout', level: 2);
   BackgroundFetch.finish(taskId);
 }
