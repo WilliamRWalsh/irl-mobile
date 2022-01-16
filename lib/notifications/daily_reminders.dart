@@ -44,6 +44,7 @@ void _onBackgroundFetch(String taskId) async {
 
   await prefs.setInt('lastReminderDOM', currentDayOfMonth);
 
+  log('BackgroundFetch: Send notification', level: 0);
   await AwesomeNotifications().createNotification(
     content: NotificationContent(
       id: 1,
