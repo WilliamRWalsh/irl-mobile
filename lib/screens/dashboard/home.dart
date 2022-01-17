@@ -69,23 +69,20 @@ class Home extends StatelessWidget {
                     color: Colors.blue[200]),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Flexible(
-                    flex: 4,
-                    child: Column(
-                      children: [
-                        Text(
-                          'Remaining Calories',
-                          style: Theme.of(context).textTheme.bodyText2,
-                        ),
-                        Text(
-                          "$remainingCalories",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText1
-                              .copyWith(fontSize: 100),
-                        ),
-                      ],
-                    ),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Remaining Calories',
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                      Text(
+                        "$remainingCalories",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText1
+                            .copyWith(fontSize: 100),
+                      ),
+                    ],
                   ),
                 ),
               ),

@@ -102,12 +102,6 @@ class SlimSamsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     precacheImage(AssetImage("assets/sam-face.jpg"), context);
 
-    AwesomeNotifications()
-        .actionStream
-        .listen((ReceivedNotification receivedNotification) {
-      Navigator.of(context).pushNamed('/NotificationPage');
-    });
-
     return ChangeNotifierProvider(
       create: (context) => LoginState(),
       child: MaterialApp(
