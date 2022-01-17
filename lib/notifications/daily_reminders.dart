@@ -37,6 +37,12 @@ void _onBackgroundFetch(String taskId) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   int? lastReminderDOM = prefs.getInt('lastReminderDOM');
 
+  bool sendNotifications = prefs.getBool('sendNotifications') ?? true;
+  if (sendNotifications) {
+    log('BackgroundFetch: sendNotifications is false', level: 0);
+    return;
+  }
+
   if (currentDayOfMonth == lastReminderDOM) {
     log('BackgroundFetch: Already run today', level: 0);
     return;

@@ -3,6 +3,7 @@ import 'package:slim_sams_cal_calc/firebase/calories_list_state.dart';
 import 'package:slim_sams_cal_calc/firebase/goal_state.dart';
 import 'package:slim_sams_cal_calc/screens/dashboard/home.dart';
 import 'package:slim_sams_cal_calc/screens/dashboard/progress.dart';
+import 'package:slim_sams_cal_calc/screens/dashboard/settings.dart';
 import 'package:slim_sams_cal_calc/screens/login/login_state.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +34,7 @@ class _DashboardState extends State<Dashboard> {
           builder: (context) {
             return Scaffold(
               resizeToAvoidBottomInset: false,
-              body: (selectedIndex == 1) ? Home() : Progress(),
+              body: whichNavPage(),
               bottomNavigationBar: BottomNavigationBar(
                 backgroundColor: Colors.black,
                 items: const <BottomNavigationBarItem>[
@@ -44,6 +45,10 @@ class _DashboardState extends State<Dashboard> {
                   BottomNavigationBarItem(
                     icon: Icon(Icons.home),
                     label: 'Home',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.settings),
+                    label: 'Settings',
                   ),
                 ],
                 currentIndex: selectedIndex,
@@ -58,5 +63,15 @@ class _DashboardState extends State<Dashboard> {
         ),
       ),
     );
+  }
+
+  Widget whichNavPage() {
+    if (selectedIndex == 0) {
+      return Progress();
+    } else if (selectedIndex == 1) {
+      return Home();
+    } else if (selectedIndex == 2) {
+      return Settings();
+    }
   }
 }
