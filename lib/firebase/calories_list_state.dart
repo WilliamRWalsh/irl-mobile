@@ -11,8 +11,9 @@ class CaloriesListState extends ChangeNotifier {
     final lastMidnight = DateTime(now.year, now.month, now.day);
     final tonightMidnight = DateTime(now.year, now.month, now.day + 1);
     _caloriesStream ??= FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
         .collection('calories')
-        .where("userID", isEqualTo: userID)
         .where("createdAt",
             isGreaterThanOrEqualTo: lastMidnight, isLessThan: tonightMidnight)
         .orderBy('createdAt', descending: false)

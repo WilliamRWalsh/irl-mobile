@@ -16,9 +16,13 @@ class AddCaloriesDialog extends StatelessWidget {
         return MyDialog(
           title: 'How many calories?',
           onConfirm: (String value) async {
-            FirebaseFirestore.instance.collection('calories').doc().set(
+            FirebaseFirestore.instance
+                .collection('users')
+                .doc(loginState.user?.uid ?? '')
+                .collection('calories')
+                .doc()
+                .set(
               {
-                'userID': loginState.user?.uid ?? '',
                 'calories': int.parse(value),
                 'createdAt': DateTime.now(),
               },

@@ -27,11 +27,12 @@ class EditGoalDialog extends StatelessWidget {
             title: 'What is your daily calorie goal?',
             onConfirm: (String value) async {
               FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(loginState.user?.uid ?? '')
                   .collection('goals')
                   .doc(goalState.goal?.id ?? null)
                   .update(
                 {
-                  'userID': loginState.user?.uid ?? '',
                   'calorieGoal': int.parse(value),
                 },
               );

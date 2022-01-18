@@ -11,16 +11,21 @@ const DEFAULT_GOAL = 2000;
 class GoalState extends ChangeNotifier {
   GoalState({required this.userID}) {
     _goalStream = FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
         .collection('goals')
-        .where("userID", isEqualTo: userID)
         .snapshots();
 
     _subscription = _goalStream.listen((snapshot) {
       List docs = snapshot.docs;
       if (docs.isEmpty) {
-        FirebaseFirestore.instance.collection('goals').doc().set(
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(userID)
+            .collection('goals')
+            .doc()
+            .set(
           {
-            'userID': userID,
             'calorieGoal': DEFAULT_GOAL,
           },
         );
