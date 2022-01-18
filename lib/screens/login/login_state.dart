@@ -2,6 +2,7 @@
 
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,12 @@ class LoginState extends ChangeNotifier {
         log('LoginState: User is currently signed out!', level: 1);
       } else {
         log('LoginState: User is signed in!', level: 1);
+        FirebaseFirestore.instance.collection('users').doc(user.uid).set(
+          {
+            'lastLoggedInUTC': DateTime.now().toUtc(),
+          },
+          SetOptions(merge: true),
+        );
         _isLoginPending = false;
         _isLogged = true;
         _user = user;
