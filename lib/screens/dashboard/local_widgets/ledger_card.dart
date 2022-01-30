@@ -1,7 +1,9 @@
 // @dart=2.12
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:slim_sams_cal_calc/firebase/calories_firebase.dart';
 import 'package:slim_sams_cal_calc/models/calories_modal.dart';
+import 'package:slim_sams_cal_calc/screens/login/login_state.dart';
 import 'package:slim_sams_cal_calc/screens/widgets/confirm_dailog.dart';
 
 class LedgerCard extends StatelessWidget {
@@ -11,6 +13,7 @@ class LedgerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final LoginState loginState = Provider.of(context);
     return DecoratedBox(
       decoration: BoxDecoration(
         color: Colors.white70,
@@ -53,8 +56,8 @@ class LedgerCard extends StatelessWidget {
                   );
 
                   if (isApproved) {
-                    // TODO: null check
-                    CaloriesFirebase().deleteCalories(calories.id);
+                    CaloriesFirebase().deleteCalories(
+                        loginState.user?.uid ?? '', calories.id);
                   }
                 },
               )),

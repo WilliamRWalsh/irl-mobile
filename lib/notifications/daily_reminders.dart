@@ -53,10 +53,10 @@ void _onBackgroundFetch(String taskId) async {
   log('BackgroundFetch: Send notification', level: 0);
   await AwesomeNotifications().createNotification(
     content: NotificationContent(
-      id: 1,
-      channelKey: 'basic_channel',
-      title: "Don't forget to track your calories!",
-    ),
+        id: 1,
+        channelKey: 'basic_channel',
+        title: "Slim Sam says...",
+        body: "'Don't forget to add your calories!'"),
   );
   BackgroundFetch.finish(taskId);
 }
