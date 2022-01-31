@@ -1,6 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:slim_sams_cal_calc/notifications/daily_reminders.dart';
 import 'package:slim_sams_cal_calc/screens/dashboard/dashboard.dart';
 import 'package:slim_sams_cal_calc/screens/dashboard/progress.dart';

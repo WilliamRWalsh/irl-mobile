@@ -2,8 +2,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:slim_sams_cal_calc/screens/login/login_state.dart';
-import 'package:provider/provider.dart';
 
 class MyDialog extends StatelessWidget {
   MyDialog({required this.title, required this.onConfirm});

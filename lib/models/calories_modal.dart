@@ -1,4 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// @dart=2.12
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'calories_modal.g.dart';

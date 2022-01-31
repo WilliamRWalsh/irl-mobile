@@ -19,7 +19,7 @@ class CaloriesListState extends ChangeNotifier {
         .orderBy('createdAt', descending: false)
         .snapshots();
 
-    _subscription = _caloriesStream.listen((snapshot) {
+    _caloriesStream.listen((snapshot) {
       _caloriesList = snapshot.docs.map(
         (doc) {
           Map<String, dynamic> data = doc.data();
@@ -47,6 +47,4 @@ class CaloriesListState extends ChangeNotifier {
 
   Stream<QuerySnapshot> _caloriesStream;
   Stream<QuerySnapshot> get caloriesStream => _caloriesStream;
-
-  StreamSubscription<QuerySnapshot> _subscription;
 }

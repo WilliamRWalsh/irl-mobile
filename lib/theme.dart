@@ -7,7 +7,9 @@ ThemeData myTheme(BuildContext context) {
     brightness: Brightness.light,
     primaryColor: Colors.blue[300],
     errorColor: Colors.red,
+    // ignore: deprecated_member_use
     accentColor: Colors.grey,
+    // ignore: deprecated_member_use
     buttonColor: Colors.yellow[600],
     primaryColorDark: Colors.black,
 

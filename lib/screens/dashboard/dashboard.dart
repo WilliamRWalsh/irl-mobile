@@ -73,5 +73,6 @@ class _DashboardState extends State<Dashboard> {
     } else if (selectedIndex == 2) {
       return Settings();
     }
+    return null;
   }
 }

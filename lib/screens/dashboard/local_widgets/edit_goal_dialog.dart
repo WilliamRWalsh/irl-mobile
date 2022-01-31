@@ -1,5 +1,6 @@
 // @dart=2.12
 
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:slim_sams_cal_calc/firebase/goal_state.dart';
