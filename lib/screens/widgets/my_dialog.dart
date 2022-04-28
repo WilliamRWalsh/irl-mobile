@@ -1,6 +1,5 @@
 // @dart=2.12
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class MyDialog extends StatelessWidget {
@@ -58,6 +57,7 @@ class MyDialog extends StatelessWidget {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(120, 40),
+                      // ignore: deprecated_member_use
                       primary: Theme.of(context).buttonColor,
                       onPrimary: Theme.of(context).primaryColorDark,
                       textStyle: Theme.of(context).textTheme.button,
@@ -75,6 +75,7 @@ class MyDialog extends StatelessWidget {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(120, 40),
+                      // ignore: deprecated_member_use
                       primary: Theme.of(context).accentColor,
                       onPrimary: Theme.of(context).primaryColorDark,
                       textStyle: Theme.of(context).textTheme.button,

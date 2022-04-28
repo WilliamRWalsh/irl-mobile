@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:slim_sams_cal_calc/firebase/calories_list_state.dart';
 import 'package:slim_sams_cal_calc/models/calories_modal.dart';

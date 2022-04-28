@@ -1,8 +1,10 @@
+// @dart=2.12
+
 import 'package:flutter/material.dart';
 
 class ConfirmDialog extends StatelessWidget {
-  ConfirmDialog({key, @required this.widget}) : super(key: key);
-  Widget widget;
+  ConfirmDialog({key, required this.widget});
+  final Widget widget;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class ConfirmDialog extends StatelessWidget {
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(120, 40),
+                      // ignore: deprecated_member_use
                       primary: Theme.of(context).buttonColor,
                       onPrimary: Theme.of(context).primaryColorDark,
                       textStyle: Theme.of(context).textTheme.button,
@@ -44,6 +47,7 @@ class ConfirmDialog extends StatelessWidget {
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(120, 40),
+                      // ignore: deprecated_member_use
                       primary: Theme.of(context).accentColor,
                       onPrimary: Theme.of(context).primaryColorDark,
                       textStyle: Theme.of(context).textTheme.button,

@@ -62,6 +62,7 @@ class VerifyForm extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(175, 50),
+                // ignore: deprecated_member_use
                 primary: Theme.of(context).buttonColor,
                 onPrimary: Theme.of(context).primaryColorDark,
                 textStyle: Theme.of(context).textTheme.button,

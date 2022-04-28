@@ -94,7 +94,7 @@ class LoginState extends ChangeNotifier {
       verificationFailed: (FirebaseAuthException e) {
         log('LoginState: verificationFailed - $e', level: 2);
       },
-      codeSent: (String verificationId, int resendToken) {
+      codeSent: (String verificationId, int? resendToken) {
         // save in outside state -- or maybe pass throw navigator
         _verificationId = verificationId;
         _isVerify = true;

@@ -6,13 +6,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Settings extends StatefulWidget {
   Settings();
 
-  bool sendNotifications = true;
-
   @override
   State<Settings> createState() => _SettingsState();
 }
 
 class _SettingsState extends State<Settings> {
+  bool sendNotifications = true;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -37,7 +37,7 @@ class _SettingsState extends State<Settings> {
                       onChanged: (bool val) {
                         snapshot.data?.setBool('sendNotifications', val);
                         setState(() {
-                          widget.sendNotifications = val;
+                          sendNotifications = val;
                         });
                       },
                     ),
